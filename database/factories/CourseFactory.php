@@ -27,6 +27,7 @@ class CourseFactory extends Factory
             'date'=>$this->faker->dateTime(),
             'description'=>$this->faker->word(),
             'image'=>$this->faker->imageUrl(),
+            'Num_max'=>$this->faker->randomNumber(),
             
         ];
     }

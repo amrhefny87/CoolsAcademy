@@ -19,6 +19,7 @@ class CreateCoursesTable extends Migration
             $table->string('description');
             $table->string('image');
             $table->date('date');
+            $table->integer('Num_max');
             $table->timestamps();
         });
     }
