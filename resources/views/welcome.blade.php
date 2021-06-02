@@ -46,7 +46,7 @@
             <div class="panel-heading">
                 <h2>Courses</h2>
             </div>
-            @section('content')
+            
                 <table class="table">
                     <thead>
                         <tr>
@@ -60,22 +60,19 @@
                     <tbody>
                         @foreach($courses as $course)
                             <tr>
-                                <td>{{$course->Course_Name}}</td>
-                                <td>{{$course->Description }}</td>
-                                <td>{{$course->Image }}</td>
-                                <td>{{$course->Date }}</td>
-                                <td>{{$course->Num_max}}</td>                              
+                                <td>{{$course->course_name}}</td>
+                                <td>{{$course->description }}</td>
+                                <td>{{$course->image }}</td>
+                                <td>{{$course->date }}</td>
+                                <td>{{$course->num_max}}</td>                              
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-            
+                
         </div>
     </div>
-@endsection   
-
-  
-                            </div>
+                               </div>
                         </div>
                     </div>
                 </div>

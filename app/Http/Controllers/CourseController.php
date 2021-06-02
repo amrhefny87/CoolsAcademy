@@ -15,7 +15,7 @@ class CourseController extends Controller
     public function index()
     {
         $courses =Course::all();
-        dd($courses[]);
+        //dd($courses);
         return view('welcome')->with('courses',$courses);
     }
 
