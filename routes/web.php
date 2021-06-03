@@ -6,7 +6,8 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\HomeController;
 
-    use App\Http\Controllers\CourseController;
+use App\Http\Controllers\CourseController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,9 +24,9 @@ use App\Http\Controllers\HomeController;
 //});
 
 //Route::get('courses', 'CourseController@welcome');
-Route::get('/', [CourseController::class, 'index'])->name('welcome');
+Route::get('/home', [CourseController::class, 'index'])->name('welcome');
 
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+//Route::get('/home', [HomeController::class, 'index'])->name('home');
