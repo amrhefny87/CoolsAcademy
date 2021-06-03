@@ -22,11 +22,11 @@ class CourseFactory extends Factory
     public function definition()
     {
         return [
-          
             'course_name'=>$this->faker->word(),
             'date'=>$this->faker->dateTime(),
             'description'=>$this->faker->word(),
             'image'=>$this->faker->imageUrl(),
+            
             
         ];
     }
