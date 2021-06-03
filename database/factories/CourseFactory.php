@@ -28,8 +28,6 @@ class CourseFactory extends Factory
             'description'=>$this->faker->word(),
             'image'=>$this->faker->imageUrl(),
             'num_max'=>$this->faker->randomNumber(),
-            
-            
         ];
     }
 }
