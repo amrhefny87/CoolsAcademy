@@ -408,6 +408,7 @@
         class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
         @if (Route::has('login'))
             <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+
                 @auth
                     <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Home</a>
                 @else
@@ -417,6 +418,9 @@
                         <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
                     @endif
                 @endauth
+
+                
+
             </div>
         @endif
 
@@ -434,7 +438,8 @@
                                 <p class="card-text"><small class="text-muted">{{ $course->num_max }}</small></p>
                                 <p class="card-text"><small class="text-muted">{{ $course->date }}</small></p>
                                 <p class="card-text">{{ $course->description }}</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <a href="#" class="btn btn-success">Register</a>
+                                <a href="#" class="btn btn-primary">More info</a>
                             </div>
                         </div>
                     @endforeach
