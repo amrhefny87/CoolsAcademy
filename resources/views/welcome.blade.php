@@ -423,7 +423,7 @@
         <div class="container-md p-5">
             <div class="panel panel-default">
                 <div class="panel-heading row pt-5">
-                    <h2 class="red lighten-2">Courses</h2>
+                    <h2>Courses</h2>
                 </div>
                 <div class="container-fluid d-flex flex-wrap justify-content-around">
                     @foreach ($courses as $course)
