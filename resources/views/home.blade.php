@@ -20,7 +20,9 @@
         </div>
     </div>
 </div>
+
 @endsection
+
 @section('content2')
 @include('welcome')
 @endsection
