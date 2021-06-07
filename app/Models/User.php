@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Course;
 
 class User extends Authenticatable
 {
@@ -44,6 +45,6 @@ class User extends Authenticatable
 
     //Relacion many to many
     public function courses(){
-        return $this->belongsToMany('App/Models/Course');
+        return $this->belongsToMany(Course::class);
     }
 }
