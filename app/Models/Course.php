@@ -13,6 +13,13 @@ class Course extends Model
 
         
     }
+
+  //Relacion many to many
+    public function users(){
+        return $this->belongsToMany('App/Models/User');
+    }
+
+
 }
 
 
