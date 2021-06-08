@@ -24,10 +24,11 @@ use App\Http\Controllers\CourseController;
 //});
 
 //Route::get('courses', 'CourseController@welcome');
-Route::get('/home', [CourseController::class, 'index'])->name('home');
+Route::get('/home', [CourseController::class, 'home'])->name('home');
 
 
 Auth::routes();
 
 Route::get('/', [CourseController::class, 'index'])->name('welcome');
 
+Route::get('/myCourses', [CourseController::class, 'myCourses'])->name('myCourses');
