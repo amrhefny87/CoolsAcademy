@@ -31,3 +31,4 @@ Auth::routes();
 
 Route::get('/', [CourseController::class, 'index'])->name('welcome');
 
+Route::get('/myCourses', [CourseController::class, 'myCourses'])->name('myCourses');

@@ -1,7 +1,5 @@
 @extends('layouts.app')
-@section('content2')
-@include('welcome')
-@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -19,18 +17,19 @@
                     {{ __('You are logged in!') }}
                 </div>
                 <div class="container-fluid d-flex flex-wrap justify-content-around">
-                    @foreach ($courses as $course)
-                        <div class="card mb-5" style="width: 18rem;">
-                            <img src="{{ $course->image }}" class="card-img-top p-2" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $course->course_name }}</h5>
-                                <p class="card-text"><small class="text-muted">{{ $course->num_max }}</small></p>
-                                <p class="card-text"><small class="text-muted">{{ $course->date }}</small></p>
-                                <p class="card-text">{{ $course->description }}</p>
-            <!--Aquí va un if --><a href="#" class="btn btn-success">Inscription</a>
-                                <a href="#" class="btn btn-primary">More info</a>
-                            </div>
+                    @foreach ($courses_users as $myCourse)
+                    @if ($id == $courses_users->user_id)
+                    <div class="card mb-5" style="width: 18rem;">
+                        <img src="{{ $myCourse->image }}" class="card-img-top p-2" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $myCourse->course_name }}</h5>
+                            <p class="card-text"><small class="text-muted">{{ $myCourse->num_max }}</small></p>
+                            <p class="card-text"><small class="text-muted">{{ $myCourse->date }}</small></p>
+                            <p class="card-text">{{ $myCourse->description }}</p>
+                            <!--Aquí va un if --><a href="#" class="btn btn-success">Inscription</a>
+                            <a href="#" class="btn btn-primary">More info</a>
                         </div>
+                    </div>
                     @endforeach
                 </div>
             </div>
