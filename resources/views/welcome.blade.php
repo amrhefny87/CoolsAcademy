@@ -429,6 +429,7 @@
                 <div class="panel-heading row pt-5">
                     <h2>Courses</h2>
                 </div>
+                <h1>hola andres</h1>
                 <div class="container-fluid d-flex flex-wrap justify-content-around">
                     @foreach ($courses as $course)
                         <div class="card mb-5" style="width: 18rem;">
@@ -438,7 +439,7 @@
                                 <p class="card-text"><small class="text-muted">{{ $course->num_max }}</small></p>
                                 <p class="card-text"><small class="text-muted">{{ $course->date }}</small></p>
                                 <p class="card-text">{{ $course->description }}</p>
-                                <a href="#" class="btn btn-success">Register</a>
+            <!--Aquí va un if --><a href="#" class="btn btn-success">Inscription</a>
                                 <a href="#" class="btn btn-primary">More info</a>
                             </div>
                         </div>

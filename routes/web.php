@@ -31,4 +31,3 @@ Auth::routes();
 
 Route::get('/', [CourseController::class, 'index'])->name('welcome');
 
-//Route::get('/home/course', [CourseController::class,]
