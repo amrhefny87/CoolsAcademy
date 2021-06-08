@@ -45,6 +45,6 @@ class User extends Authenticatable
 
     //Relacion many to many
     public function courses(){
-        return $this->belongsToMany(Course::class);
+        return $this->belongsToMany(Course::class, 'courses_users');
     }
 }
