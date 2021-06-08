@@ -24,7 +24,7 @@ use App\Http\Controllers\CourseController;
 //});
 
 //Route::get('courses', 'CourseController@welcome');
-Route::get('/home', [CourseController::class, 'index'])->name('home');
+Route::get('/home', [CourseController::class, 'home'])->name('home');
 
 
 Auth::routes();

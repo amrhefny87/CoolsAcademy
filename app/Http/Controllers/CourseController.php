@@ -24,6 +24,13 @@ class CourseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function home()
+    {
+        $courses =Course::all();
+        return view('home')->with('courses',$courses);
+    }
+    
     public function create()
     {
         //
