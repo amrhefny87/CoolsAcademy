@@ -32,15 +32,15 @@
     <div
         class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
         @if (Route::has('login'))
-            <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+            <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block float-right mr-5">
 
                 @auth
-                    <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Home</a>
+                    <a href="{{ url('/home') }}" class="text-sm text-white underline">Home</a>
                 @else
-                    <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
+                    <a href="{{ route('login') }}" class="text-sm text-white underline">Log in</a>
 
                     @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
+                        <a href="{{ route('register') }}" class="ml-4 text-sm text-white underline">Register</a>
                     @endif
                 @endauth
 
@@ -52,21 +52,21 @@
         <div class="container-md p-5">
             <div class="panel panel-default">
                 <div class="panel-heading row pt-5">
-                    <h2>Courses</h2>
+                    <h2 class="text-white">Our Courses</h2>
                 </div>
-                <h1>hola andres</h1>
                 <div class="container-fluid d-flex flex-wrap justify-content-around">
                     @foreach ($courses as $course)
-                        <div class="card mb-5" style="width: 18rem;">
-                            <img src="{{ $course->image }}" class="card-img-top p-2" alt="...">
+                        <div class=" mb-5 shadow-lg card-special" style="width: 18rem; border-radius:1rem;">
+                            <img src="{{ $course->image }}" class="card-img-top p-2" style="border-radius:1rem" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $course->course_name }}</h5>
-                                <p class="card-text"><small class="text-muted">{{ $course->num_max }}</small></p>
-                                <p class="card-text"><small class="text-muted">{{ $course->date }}</small></p>
+                                <p class="card-text"><small class="text-white">{{ $course->num_max }}</small></p>
+                                <p class="card-text"><small class="text-white">{{ $course->date }}</small></p>
                                 <p class="card-text">{{ $course->description }}</p>
-            <!--Aquí va un if --><a href="#" class="btn btn-success">Inscription</a>
-                                <a href="#" class="btn btn-primary">More info</a>
+            <!--Aquí va un if --><a href="#" class="button-inscribe btn btn-success">Inscription</a>
+                                <a href="#" class="button-info btn btn-primary">More info</a>
                             </div>
+                            
                         </div>
                     @endforeach
                 </div>
@@ -77,7 +77,7 @@
     </div>
     </div>
 
-    <div class="flex justify-center mt-4 sm:items-center sm:justify-between">
+    <!--<div class="flex justify-center mt-4 sm:items-center sm:justify-between">
         <div class="text-center text-sm text-gray-500 sm:text-left">
             <div class="flex items-center">
                 <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
@@ -107,7 +107,7 @@
         <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
             Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
         </div>
-    </div>
+    </div>-->
     </div>
     </div>
 </body>

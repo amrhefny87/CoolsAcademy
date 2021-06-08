@@ -30,6 +30,7 @@
                             <a href="#" class="btn btn-primary">More info</a>
                         </div>
                     </div>
+                    @endif
                     @endforeach
                 </div>
             </div>
