@@ -18,7 +18,7 @@
                 </div>
                 <div class="container-fluid d-flex flex-wrap justify-content-around">
                     @foreach ($courses_users as $myCourse)
-                    @if ($id == $courses_users->user_id)
+                    {{-- @if ($id == $courses_users->user_id) --}}
                     <div class="card mb-5" style="width: 18rem;">
                         <img src="{{ $myCourse->image }}" class="card-img-top p-2" alt="...">
                         <div class="card-body">
@@ -30,7 +30,7 @@
                             <a href="#" class="btn btn-primary">More info</a>
                         </div>
                     </div>
-                    @endif
+                    {{-- @endif --}}
                     @endforeach
                 </div>
             </div>
