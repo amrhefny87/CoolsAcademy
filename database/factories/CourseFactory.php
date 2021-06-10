@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Course;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class CourseFactory extends Factory
 {
@@ -26,8 +27,7 @@ class CourseFactory extends Factory
             'date'=>$this->faker->dateTime(),
             'description'=>$this->faker->word(),
             'image'=>$this->faker->imageUrl(),
-            
-            
+            'num_max'=>$this->faker->randomNumber(),
         ];
     }
 }
