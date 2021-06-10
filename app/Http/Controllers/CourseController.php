@@ -103,3 +103,20 @@ class CourseController extends Controller
         //
     }
 }
+
+//public function bookEvent($user_id, $id){
+
+    //$user = User::find($user_id);
+   // $event = Events::find($id);
+
+   // $user->EventsBookedIn()->attach($event->id);
+//}
+//public function CancelbookedEvent($user_id, $id){
+
+    //$user = User::find($user_id);
+    //$event = Events::find($id);
+
+    //$user->EventsBookedIn()->detach($event->id);
+//}
+
+//}

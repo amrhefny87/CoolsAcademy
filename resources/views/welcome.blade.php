@@ -64,7 +64,8 @@
                                 <p class="card-text"><small class="text-white">{{ $course->num_max }}</small></p>
                                 <p class="card-text"><small class="text-white">{{ $course->date }}</small></p>
                                 <p class="card-text">{{ $course->description }}</p>
-            <!--Aquí va un if --><a href="#" class="button-inscribe btn btn-success">Inscription</a>
+                                            <!--Aquí va un if --><a href="#" class="button-inscribe btn btn-success">Inscription</a>
+                            
                                 <a href="" class="button-info btn btn-primary">More info</a>
                             </div>
                             
