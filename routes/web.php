@@ -26,11 +26,12 @@ use App\Http\Middleware\isAdmin;
 //});
 
 //Route::get('courses', 'CourseController@welcome');
-Route::get('/home', [CourseController::class, 'home'])->name('home');
 
 
 Auth::routes();
 
 Route::get('/', [CourseController::class, 'index'])->name('welcome');
 
-Route::get('/home/myCourses', [CourseController::class, 'myCourses'])->middleware('auth')->name('myCourses');
+Route::get('/home', [CourseController::class, 'home'])->name('home');
+
+Route::get('home/myCourses/{$user->id}', [CourseController::class, 'myCourses'])->middleware('auth')->name('myCourses');

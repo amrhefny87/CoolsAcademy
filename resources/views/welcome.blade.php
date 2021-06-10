@@ -36,6 +36,7 @@
 
                 @auth
                     <a href="{{ url('/home') }}" class="text-sm text-white underline">Home</a>
+                    <a href="{{route('myCourses', $user->id)}}">My Courses</a>
                 @else
                     <a href="{{ route('login') }}" class="text-sm text-white underline">Log in</a>
 
@@ -64,7 +65,7 @@
                                 <p class="card-text"><small class="text-white">{{ $course->date }}</small></p>
                                 <p class="card-text">{{ $course->description }}</p>
             <!--Aquí va un if --><a href="#" class="button-inscribe btn btn-success">Inscription</a>
-                                <a href="#" class="button-info btn btn-primary">More info</a>
+                                <a href="" class="button-info btn btn-primary">More info</a>
                             </div>
                             
                         </div>
