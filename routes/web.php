@@ -8,6 +8,8 @@ use App\Http\Controllers\HomeController;
 
 use App\Http\Controllers\CourseController;
 
+use App\Http\Middleware\isAdmin;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,9 +26,12 @@ use App\Http\Controllers\CourseController;
 //});
 
 //Route::get('courses', 'CourseController@welcome');
-Route::get('/home', [CourseController::class, 'index'])->name('home');
 
 
 Auth::routes();
 
 Route::get('/', [CourseController::class, 'index'])->name('welcome');
+
+Route::get('/home', [CourseController::class, 'home'])->name('home');
+
+Route::get('home/myCourses', [CourseController::class, 'myCourses'])->middleware('auth')->name('myCourses');
