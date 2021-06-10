@@ -4,8 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class UserStudent
+class isAdmin
 {
     /**
      * Handle an incoming request.
@@ -16,7 +17,9 @@ class UserStudent
      */
     public function handle(Request $request, Closure $next)
     {
-        i
-        return $next($request);
+        if(Auth::user()->is_admin){
+        dd('admin');
+        //return $next($request);
+        }
     }
 }

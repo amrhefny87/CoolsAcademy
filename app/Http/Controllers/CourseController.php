@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class CourseController extends Controller
 {
@@ -32,15 +33,12 @@ class CourseController extends Controller
         return view('home')->with('courses',$courses);
     }
     
-    public function myCourses()
+    public function myCourses($id, $user, $courses)
     {
-        $myCourses =Course::all();
-        $user = Auth::user();
-        $id = Auth::id();
-        // dd($id);
-        if (Auth::check()) {
-            return view('myCourses')->with('courses_users',$myCourses, $user, $id);
-        }
+        $user =User::find($id);
+        $courses = $user->courses()->get();
+        // dd($user);
+        return view('myCourses', ['user'=>$user, 'courses_users'=>$courses]);
         
     }
 
