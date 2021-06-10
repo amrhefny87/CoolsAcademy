@@ -36,7 +36,7 @@
 
                 @auth
                     <a href="{{ url('/home') }}" class="text-sm text-white underline">Home</a>
-                    <a href="">My Courses</a>
+                    <a href="{{ route('myCourses') }}">My Courses</a>
                 @else
                     <a href="{{ route('login') }}" class="text-sm text-white underline">Log in</a>
 

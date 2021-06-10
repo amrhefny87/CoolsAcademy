@@ -33,12 +33,12 @@ class CourseController extends Controller
         return view('home')->with('courses',$courses);
     }
     
-    public function myCourses($id)
+    public function myCourses()
     {
-        $user =User::find($id);
-        $courses = $user->courses()->get();
-        // dd($user);
-        return view('myCourses', ['user'=>$user, 'courses_users'=>$courses]);
+        $user =Auth::user();
+        $courses = $user->courses;
+        //dd($courses);
+        return view('myCourses', ['courses_users'=>$courses]);
         
     }
 

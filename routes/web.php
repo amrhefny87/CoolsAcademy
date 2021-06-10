@@ -34,4 +34,4 @@ Route::get('/', [CourseController::class, 'index'])->name('welcome');
 
 Route::get('/home', [CourseController::class, 'home'])->name('home');
 
-Route::get('home/myCourses/{id}', [CourseController::class, 'myCourses'])->middleware('auth')->name('myCourses');
+Route::get('home/myCourses', [CourseController::class, 'myCourses'])->middleware('auth')->name('myCourses');
