@@ -35,13 +35,10 @@ class CourseController extends Controller
     
     public function myCourses()
     {
-        $courses_users =Course::findMany(1);
-        $user = Auth::user();
-        $id = Auth::id();
-        // dd($id);
-        if (Auth::check()) {
-            return view('myCourses')->with('courses_users',$courses_users, $user, $id);
-        }
+        $user =Auth::user();
+        $courses = $user->courses;
+        //dd($courses);
+        return view('myCourses', ['courses_users'=>$courses]);
         
     }
 
