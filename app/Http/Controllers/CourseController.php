@@ -42,6 +42,32 @@ class CourseController extends Controller
         
     }
 
+    public function subscribe($id)
+    {
+        
+        $user =User::find(Auth::id());
+        $courses = $user->courses;
+        $course_id=Course::find($id);
+        //dd($user->courses);
+        $user->courses()->attach($course_id);
+        return view('myCourses', ['courses_users'=>$courses]);
+       
+    }
+
+    public function unsubscribe($id)
+    {
+        
+        $user =User::find(Auth::id());
+        //$courses = $user->courses;
+        $course_id=Course::find($id);
+        //dd($user->courses);
+        $user->courses()->detach(2);
+        return view('myCourses', ['courses_users'=>$course_id]);
+       
+    }
+
+
+
     public function create()
     {
         //
@@ -103,3 +129,20 @@ class CourseController extends Controller
         //
     }
 }
+
+//public function bookEvent($user_id, $id){
+
+    //$user = User::find($user_id);
+   // $event = Events::find($id);
+
+   // $user->EventsBookedIn()->attach($event->id);
+//}
+//public function CancelbookedEvent($user_id, $id){
+
+    //$user = User::find($user_id);
+    //$event = Events::find($id);
+
+    //$user->EventsBookedIn()->detach($event->id);
+//}
+
+//}
