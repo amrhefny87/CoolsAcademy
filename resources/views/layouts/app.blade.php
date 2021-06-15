@@ -83,7 +83,6 @@
 
         <main class="py-4">
             @yield('content')
-            @yield('content2')
         </main>
     </div>
 
