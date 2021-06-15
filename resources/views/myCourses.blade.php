@@ -27,7 +27,7 @@
                             <p class="card-text"><small class="text-muted">{{ $myCourse->date }}</small></p>
                             <p class="card-text">{{ $myCourse->description }}</p>
                             @if (Auth::check())
-            <!--Aquí va un if --><a href="{{ route('unsubscribe', ["id"=>$myCourse->course_id]) }}" class="button-inscribe btn btn-success">Unsubscription</a>
+            <!--Aquí va un if --><a href="{{ route('unsubscribe', ["id"=>$myCourse->id]) }}" class="button-inscribe btn btn-success">Unsubscription</a>
                                 @endif
                             <a href="#" class="btn btn-primary">More info</a>
                         </div>
