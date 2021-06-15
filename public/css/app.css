@@ -4352,7 +4352,7 @@ input[type=button].btn-block {
         rgba(29, 236, 197, 0.5),
         rgba(91, 14, 214, 0.5) 100%
       );
-  transform: scale(1.05);
+  
   transform: translateY(-10px);
   
 } 
@@ -4364,7 +4364,7 @@ input[type=button].btn-block {
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  
+  background-color: rgba(0, 0, 0, 0.5);
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
@@ -10040,3 +10040,30 @@ h3 {
     border-color: #dee2e6;
   }
 }
+
+.slider {
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+  padding: 2rem;
+  width:100%;
+}
+
+.swiper-container {
+  width: 50%;
+
+ 
+}
+
+.swiper-slide {
+  background-position: center;
+  
+  background-size: cover;
+  padding: 20px;
+
+}
+
+
+
+

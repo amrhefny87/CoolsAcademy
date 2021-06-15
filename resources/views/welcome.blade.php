@@ -13,6 +13,9 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
+    <!-- SWipe JS-->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
     <!-- Styles -->
     <style>
         /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
@@ -26,9 +29,11 @@
         }
 
     </style>
+
 </head>
 
 <body class="antialiased">
+    
     <div
         class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
         @if (Route::has('login'))
@@ -36,12 +41,12 @@
 
                 @auth
                     <a href="{{ url('/home') }}" class="text-sm text-white underline">Home</a>
-                    <a href="{{ route('myCourses') }}">My Courses</a>
+                    <a href="{{ route('myCourses') }}" class="text-sm text-white underline">My Courses</a>
                 @else
-                    <a href="{{ route('login') }}" class="text-sm text-white underline">Log in</a>
+                    <a href="{{ route('login') }}" class="text-sm text-white underline">LOG IN</a>
 
                     @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="ml-4 text-sm text-white underline">Register</a>
+                        <a href="{{ route('register') }}" class="ml-2 text-sm text-white underline">SIGN UP</a>
                     @endif
                 @endauth
 
@@ -49,12 +54,26 @@
 
             </div>
         @endif
+    <!--<div class="slider float-center">-->
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                @foreach ($courses as $course)
+                <div class="swiper-slide">
+                    
+                    <img src="{{$course->image}}" class="card-img-top p-2" style="border-radius:1rem" alt="...">
+                    
+                </div>
+                @endforeach
+    
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+        </div>
+    <!--</div>-->
 
         <div class="container-md p-5">
             <div class="panel panel-default">
-                <div class="panel-heading row pt-5">
-                    <h2 class="text-white">Our Courses</h2>
-                </div>
+
                 <div class="container-fluid d-flex flex-wrap justify-content-around">
                     @foreach ($courses as $course)
                         <div class=" mb-5 shadow-lg card-special" style="width: 18rem; border-radius:1rem;">
@@ -112,6 +131,29 @@
     </div>-->
     </div>
     </div>
+    
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<!-- Initialize Swiper -->
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+        effect: 'coverflow',
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: 'auto',
+        coverflowEffect: {
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows: true,
+        },
+        pagination: {
+            el: '.swiper-pagination',
+        },
+        });
+    </script>
 </body>
+
 
 </html>

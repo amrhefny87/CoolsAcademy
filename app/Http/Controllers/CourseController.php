@@ -53,7 +53,6 @@ class CourseController extends Controller
         $user->courses()->attach($course_id);
         $this->sendEmail();
         return redirect()->route('myCourses');
-       
     }
 
     public function unsubscribe($id)
@@ -64,13 +63,12 @@ class CourseController extends Controller
         //dd($user->courses);
         $user->courses()->detach($course_id);
         return redirect()->route('myCourses');
-       
     }
 
-    public function sendEmail ()
+    public function sendEmail()
     {
         $correo = new WelcomeToCourseMailable;
-   
+
         Mail::to("cooldersversion2@gmail.com")->send($correo);
         
         return redirect()->route('myCourses');
