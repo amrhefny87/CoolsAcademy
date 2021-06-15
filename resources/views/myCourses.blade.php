@@ -17,6 +17,7 @@
                     {{ __('You are logged in!') }}
                 </div>
                 <div class="container-fluid d-flex flex-wrap justify-content-around">
+                    <a href="{{ url('/home') }}" class="text-sm text-white underline"><button class="btn-primary boton-home"></button></a>
                     @foreach ($courses_users as $myCourse)
                     {{-- @if ($id == $courses_users->user_id) --}}
                     <div class="card mb-5" style="width: 18rem;">
@@ -26,7 +27,9 @@
                             <p class="card-text"><small class="text-muted">{{ $myCourse->num_max }}</small></p>
                             <p class="card-text"><small class="text-muted">{{ $myCourse->date }}</small></p>
                             <p class="card-text">{{ $myCourse->description }}</p>
-                            <!--Aquí va un if --><a href="#" class="btn btn-success">Inscription</a>
+                            @if (Auth::check())
+            <!--Aquí va un if --><a href="{{ route('unsubscribe', ["id"=>$myCourse->id]) }}" class="button-inscribe btn btn-success">Unsubscription</a>
+                                @endif
                             <a href="#" class="btn btn-primary">More info</a>
                         </div>
                     </div>

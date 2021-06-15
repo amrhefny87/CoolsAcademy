@@ -6,6 +6,8 @@ use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Mail\WelcomeToCourseMailable;
+use Illuminate\Support\Facades\Mail;
 
 class CourseController extends Controller
 {
@@ -39,6 +41,39 @@ class CourseController extends Controller
         $courses = $user->courses;
         //dd($courses);
         return view('myCourses', ['courses_users'=>$courses]);
+        
+    }
+
+    public function subscribe($id)
+    {
+        $user =User::find(Auth::id());
+        //$user =Auth::user();
+        $course_id=Course::find($id);
+        //dd($user->courses);
+        $user->courses()->attach($course_id);
+        $this->sendEmail();
+        return redirect()->route('myCourses');
+       
+    }
+
+    public function unsubscribe($id)
+    {
+        
+        $user =User::find(Auth::id());
+        $course_id=Course::find($id);
+        //dd($user->courses);
+        $user->courses()->detach($course_id);
+        return redirect()->route('myCourses');
+       
+    }
+
+    public function sendEmail ()
+    {
+        $correo = new WelcomeToCourseMailable;
+   
+        Mail::to("cooldersversion2@gmail.com")->send($correo);
+        
+        return redirect()->route('myCourses');
         
     }
 
@@ -103,3 +138,20 @@ class CourseController extends Controller
         //
     }
 }
+
+//public function bookEvent($user_id, $id){
+
+    //$user = User::find($user_id);
+   // $event = Events::find($id);
+
+   // $user->EventsBookedIn()->attach($event->id);
+//}
+//public function CancelbookedEvent($user_id, $id){
+
+    //$user = User::find($user_id);
+    //$event = Events::find($id);
+
+    //$user->EventsBookedIn()->detach($event->id);
+//}
+
+//}
