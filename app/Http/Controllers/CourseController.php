@@ -44,13 +44,13 @@ class CourseController extends Controller
 
     public function subscribe($id)
     {
-        
         $user =User::find(Auth::id());
-        $courses = $user->courses;
+        //$user =Auth::user();
         $course_id=Course::find($id);
         //dd($user->courses);
         $user->courses()->attach($course_id);
-        return view('myCourses', ['courses_users'=>$courses]);
+        $courses = $user->courses;
+        return redirect()->route('myCourses');
        
     }
 
@@ -58,11 +58,11 @@ class CourseController extends Controller
     {
         
         $user =User::find(Auth::id());
-        //$courses = $user->courses;
         $course_id=Course::find($id);
         //dd($user->courses);
-        $user->courses()->detach(2);
-        return view('myCourses', ['courses_users'=>$course_id]);
+        $user->courses()->detach($course_id);
+        $courses = $user->courses;
+        return redirect()->route('myCourses');
        
     }
 
