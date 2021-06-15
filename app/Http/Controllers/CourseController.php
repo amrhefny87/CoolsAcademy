@@ -49,9 +49,8 @@ class CourseController extends Controller
         $course_id=Course::find($id);
         //dd($user->courses);
         $user->courses()->attach($course_id);
-        $courses = $user->courses;
         return redirect()->route('myCourses');
-       
+    
     }
 
     public function unsubscribe($id)
@@ -61,9 +60,8 @@ class CourseController extends Controller
         $course_id=Course::find($id);
         //dd($user->courses);
         $user->courses()->detach($course_id);
-        $courses = $user->courses;
         return redirect()->route('myCourses');
-       
+    
     }
 
 
