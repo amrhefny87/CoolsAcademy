@@ -17,6 +17,7 @@
                     {{ __('You are logged in!') }}
                 </div>
                 <div class="container-fluid d-flex flex-wrap justify-content-around">
+                    <a href="{{ url('/home') }}" class="text-sm text-white underline"><button class="btn-primary boton-home"></button></a>
                     @foreach ($courses_users as $myCourse)
                     {{-- @if ($id == $courses_users->user_id) --}}
                     <div class="card mb-5" style="width: 18rem;">

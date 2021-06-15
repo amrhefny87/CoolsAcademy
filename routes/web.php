@@ -10,6 +10,7 @@ use App\Http\Controllers\CourseController;
 
 use App\Http\Middleware\isAdmin;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,6 +37,10 @@ Route::get('/home', [CourseController::class, 'home'])->name('home');
 
 Route::get('home/myCourses', [CourseController::class, 'myCourses'])->middleware('auth')->name('myCourses');
 
-Route::get('/subscribe/{id}', [CourseController::class, 'subscribe'])->middleware('auth')->name('subscribe');
 
 Route::get('/unsubscribe/{id}', [CourseController::class, 'unsubscribe'])->middleware('auth')->name('unsubscribe');
+
+Route::get('/subscribe/{id}', [CourseController::class, 'subscribe'])->middleware('auth')->name('subscribe');
+
+Route::get('home/myCourses/confirmation',[CourseController::class, 'sendEmail'])->middleware('auth')->name('confirmation');
+
