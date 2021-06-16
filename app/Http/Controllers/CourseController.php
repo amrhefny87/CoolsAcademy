@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Mail\WelcomeToCourseMailable;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Http\Response;
 
 class CourseController extends Controller
 {
@@ -53,7 +54,7 @@ class CourseController extends Controller
         $user->courses()->attach($course_id);
         $this->sendEmail();
         return redirect()->route('myCourses');
-       
+    
     }
 
     public function unsubscribe($id)
@@ -64,13 +65,13 @@ class CourseController extends Controller
         //dd($user->courses);
         $user->courses()->detach($course_id);
         return redirect()->route('myCourses');
-       
+    
     }
 
     public function sendEmail ()
     {
         $correo = new WelcomeToCourseMailable;
-   
+
         Mail::to("cooldersversion2@gmail.com")->send($correo);
         
         return redirect()->route('myCourses');
@@ -79,7 +80,7 @@ class CourseController extends Controller
 
     public function create()
     {
-        //
+        return view('create');
     }
 
     /**
@@ -90,7 +91,17 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $course = Course::create([
+            "course_name"=>$request->course_name,
+            "image"=>$request->image,
+            "date"=>$request->date,
+            "num_max"=>$request->num_max,
+            "description"=>$request->description
+        ]);
+        $course->save();
+        return redirect()->route('home')//->with('message',"The course has been created successfully");
+        ;
+
     }
 
     /**
