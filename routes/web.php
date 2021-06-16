@@ -44,3 +44,5 @@ Route::get('/subscribe/{id}', [CourseController::class, 'subscribe'])->middlewar
 
 Route::get('home/myCourses/confirmation',[CourseController::class, 'sendEmail'])->middleware('auth')->name('confirmation');
 
+Route::get('/home/create',[CourseController::class,'create'])->name('create');
+Route::post('/home/create',[CourseController::class,'store'])->name('store');

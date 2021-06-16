@@ -9,6 +9,14 @@ use App\Models\User;
 class Course extends Model
 {
     use HasFactory;
+    protected $fillable = [
+      'course_name',
+      'description',
+      'image',
+      'date',
+      'num_max'
+      
+  ];
 
     public function showCourses(){
 
@@ -17,7 +25,7 @@ class Course extends Model
 
   //Relacion many to many
     public function users(){
-        return $this->belongsToMany(User::class, 'courses_users');
+      return $this->belongsToMany(User::class, 'courses_users');
     }
 
 }
