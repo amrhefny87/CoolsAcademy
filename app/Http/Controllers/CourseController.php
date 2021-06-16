@@ -70,7 +70,7 @@ class CourseController extends Controller
     public function sendEmail ()
     {
         $correo = new WelcomeToCourseMailable;
-   
+
         Mail::to("cooldersversion2@gmail.com")->send($correo);
         
         return redirect()->route('myCourses');
@@ -79,7 +79,7 @@ class CourseController extends Controller
 
     public function create()
     {
-        //
+        return view('create');
     }
 
     /**
