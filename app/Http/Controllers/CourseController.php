@@ -144,9 +144,11 @@ class CourseController extends Controller
      * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Course $course)
+    public function destroy($id)
     {
-        //
+        Course::find($id)->delete();
+        return redirect()->route('home')//->with('message',"The course has been created successfully");
+        ;
     }
 }
 

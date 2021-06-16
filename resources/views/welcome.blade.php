@@ -67,6 +67,7 @@
                                             <!--Aquí va un if --><a href="{{ route('subscribe', ["id"=>$course->id])}}" class="button-inscribe btn btn-success">Inscription</a>
                             
                                 <a href="" class="button-info btn btn-primary">More info</a>
+                                <a href="{{route('delete',  ["id"=>$course->id])}}" class="button-info btn btn-danger">delete course</a>
                             </div>
                             
                         </div>
