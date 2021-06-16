@@ -6,6 +6,8 @@ use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Mail\WelcomeToCourseMailable;
+use Illuminate\Support\Facades\Mail;
 
 class CourseController extends Controller
 {
@@ -49,6 +51,7 @@ class CourseController extends Controller
         $course_id=Course::find($id);
         //dd($user->courses);
         $user->courses()->attach($course_id);
+        $this->sendEmail();
         return redirect()->route('myCourses');
     
     }
@@ -64,7 +67,15 @@ class CourseController extends Controller
     
     }
 
-
+    public function sendEmail ()
+    {
+        $correo = new WelcomeToCourseMailable;
+   
+        Mail::to("cooldersversion2@gmail.com")->send($correo);
+        
+        return redirect()->route('myCourses');
+        
+    }
 
     public function create()
     {

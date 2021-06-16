@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('content2')
 @include('welcome')
+
+
 @endsection
 @section('content')
 <div class="container">
@@ -18,6 +20,7 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+                    
                 </div>
             </div>
         </div>
