@@ -46,10 +46,10 @@ Route::get('home/myCourses/confirmation',[CourseController::class, 'sendEmail'])
 
 Route::get('/home/create',[CourseController::class,'create'])->middleware('admin')-> name('create');
 
-Route::post('/home/create',[CourseController::class,'store'])->name('store');
+Route::post('/home/create',[CourseController::class,'store'])->middleware('admin')->name('store');
 
-Route::get('/home/delete/{id}',[CourseController::class,'destroy'])->name('delete');
+Route::get('/home/delete/{id}',[CourseController::class,'destroy'])->middleware('admin')->name('delete');
 
-Route::get('/home/edit/{id}',[CourseController::class,'edit'])->name('edit');
+Route::get('/home/edit/{id}',[CourseController::class,'edit'])->middleware('admin')->name('edit');
 
-Route::post('/home/update/{id}',[CourseController::class,'update'])->name('update');
+Route::post('/home/update/{id}',[CourseController::class,'update'])->middleware('admin')->name('update');

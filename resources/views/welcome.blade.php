@@ -41,8 +41,12 @@
 
                 @auth
                     <a href="{{ url('/home') }}" class="text-sm text-white underline">Home</a>
-                    <a href="{{ route('myCourses') }}" class="text-sm text-white underline">My Courses</a>
+                    
+                    @if (Auth::user()->is_admin)
                     <a href="{{route('create')}}" class="button-info btn btn-success">Create course</a>
+                    @else
+                    <a href="{{ route('myCourses') }}" class="text-sm text-white underline">My Courses</a>
+                    @endif
                 @else
                     <a href="{{ route('login') }}" class="text-sm text-white underline">LOG IN</a>
 
@@ -84,10 +88,14 @@
                                 <p class="card-text"><small class="text-white">{{ $course->num_max }}</small></p>
                                 <p class="card-text"><small class="text-white">{{ $course->date }}</small></p>
                                 <p class="card-text">{{ $course->description }}</p>
-                                            <!--Aquí va un if --><a href="{{ route('subscribe',["id"=>$course->id])}}" class="button-inscribe btn btn-success">Inscription</a>
+                                @auth
+                                    @if (Auth::user()->is_admin)
+                                        <a href="{{route('edit',  ["id"=>$course->id])}}" class="button-info btn btn-warning">Edit course</a>
+                                        <a href="{{route('delete',  ["id"=>$course->id])}}" class="button-info btn btn-danger">delete course</a>
+                                    @endif                                
+                                @endauth
+                                <a href="{{ route('subscribe',["id"=>$course->id])}}" class="button-inscribe btn btn-success">Inscription</a>
                                 <a href="" class="button-info btn btn-primary">More info</a>
-                                <a href="{{route('delete',  ["id"=>$course->id])}}" class="button-info btn btn-danger">delete course</a>
-                                <a href="{{route('edit',  ["id"=>$course->id])}}" class="button-info btn btn-warning">Edit course</a>
                             </div>
                             
                         </div>
