@@ -45,4 +45,11 @@ Route::get('/subscribe/{id}', [CourseController::class, 'subscribe'])->middlewar
 Route::get('home/myCourses/confirmation',[CourseController::class, 'sendEmail'])->middleware('auth')->name('confirmation');
 
 Route::get('/home/create',[CourseController::class,'create'])->name('create');
+
 Route::post('/home/create',[CourseController::class,'store'])->name('store');
+
+Route::get('/home/delete/{id}',[CourseController::class,'destroy'])->name('delete');
+
+Route::get('/home/edit/{id}',[CourseController::class,'edit'])->name('edit');
+
+Route::post('/home/update/{id}',[CourseController::class,'update'])->name('update');

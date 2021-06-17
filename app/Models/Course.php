@@ -9,7 +9,8 @@ use App\Models\User;
 class Course extends Model
 {
     use HasFactory;
-    protected $fillable = [
+
+     protected $fillable = [
       'course_name',
       'description',
       'image',
@@ -17,6 +18,16 @@ class Course extends Model
       'num_max'
       
   ];
+
+  //protected $perPage = 20;
+
+    /**
+     * Attributes that should be mass-assignable.
+     *
+     * @var array
+     */
+    //protected $fillable = ['course_name','description','image','date','num_max'];
+
 
     public function showCourses(){
 
