@@ -42,6 +42,7 @@
                 @auth
                     <a href="{{ url('/home') }}" class="text-sm text-white underline">Home</a>
                     <a href="{{ route('myCourses') }}" class="text-sm text-white underline">My Courses</a>
+                    <a href="{{route('create')}}" class="button-info btn btn-success">Create course</a>
                 @else
                     <a href="{{ route('login') }}" class="text-sm text-white underline">LOG IN</a>
 

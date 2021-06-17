@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">New Course</div>
+                <div class="card-header">Edit Course</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{route('update', $course->id)}}">                        
@@ -15,7 +15,7 @@
                             <label class="col-md-4 col-form-label text-md-right">Course Name</label>
 
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="course_name" value="">
+                                <input type="text" class="form-control" name="course_name" value="{{$course->course_name}}">
 
                             </div>
                         </div>
@@ -24,7 +24,7 @@
                             <label class="col-md-4 col-form-label text-md-right">Image url</label>
 
                             <div class="col-md-6">
-                                <input type="text" class="form-control " name="image" value="">
+                                <input type="text" class="form-control " name="image" value="{{$course->image}}">
 
                             </div>
                         </div>
@@ -33,7 +33,7 @@
                             <label class="col-md-4 col-form-label text-md-right">Date (yyyy-mm-dd)</label>
 
                             <div class="col-md-6">
-                                <input  type="text" class="form-control" name="date">
+                                <input  type="text" class="form-control" name="date" value="{{$course->date}}">
 
                             </div>
                         </div>
@@ -42,7 +42,7 @@
                             <label  class="col-md-4 col-form-label text-md-right">Num Max</label>
 
                             <div class="col-md-6">
-                                <input  type="number" class="form-control" name="num_max">
+                                <input  type="number" class="form-control" name="num_max" value="{{$course->num_max}}">
                             </div>
                         </div>
 
@@ -50,7 +50,7 @@
                             <label  class="col-md-4 col-form-label text-md-right">Description</label>
 
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="description">
+                                <input type="text" class="form-control" name="description" value="{{$course->description}}">
                             </div>
                         </div>
 
