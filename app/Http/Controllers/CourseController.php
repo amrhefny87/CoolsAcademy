@@ -139,15 +139,15 @@ class CourseController extends Controller
     {
         //$course=Course::find($id);
         $course = Course::whereId($id);
-       
+    
         $course->update([
-             "course_name"=>$request->course_name,
-             "image"=>$request->image,
-             "date"=>$request->date,
-             "num_max"=>$request->num_max,
+        "course_name"=>$request->course_name,
+            "image"=>$request->image,
+            "date"=>$request->date,
+            "num_max"=>$request->num_max,
             "description"=>$request->description
-         ]);
-       
+        ]);
+
         //$course->update($request->all());
         //dd($course);
 
