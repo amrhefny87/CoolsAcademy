@@ -19,7 +19,8 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses =Course::all();
+        $courses =Course::all()->sortBy('date');
+        //$courses =Course::orderBy('id','desc');
         //dd($courses);
         return view('welcome')->with('courses',$courses);
     }
@@ -32,7 +33,8 @@ class CourseController extends Controller
 
     public function home()
     {
-        $courses =Course::all();
+        $courses =Course::all()->sortBy('date');
+        //$courses =Course::orderBy('id','desc');
         return view('home')->with('courses',$courses);
     }
     
