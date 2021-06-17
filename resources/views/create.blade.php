@@ -39,12 +39,38 @@
                         </div>
 
                         <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">Hour</label>
+                            
+                            <div class="col-md-6">
+                                <input  type="appt-time" class="form-control" name="hour" min="00:00:00" max=“23:59:59”>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">Course Link</label>
+
+                            <div class="col-md-6">
+                                <input  type="text" class="form-control" name="course_link">
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label  class="col-md-4 col-form-label text-md-right">Num Max</label>
 
                             <div class="col-md-6">
                                 <input  type="number" class="form-control" name="num_max">
                             </div>
                         </div>
+
+                        <div class="form-group row">
+                            <label class="switch">
+                                <input type="radio" class="form-radio" name="favorite" value="1">
+                                <span class="slider round">Favorite</span>
+                            </label>
+                        </div>
+                          
 
                         <div class="form-group row">
                             <label  class="col-md-4 col-form-label text-md-right">Description</label>

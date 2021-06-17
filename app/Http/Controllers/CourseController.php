@@ -102,6 +102,9 @@ class CourseController extends Controller
             "course_name"=>$request->course_name,
             "image"=>$request->image,
             "date"=>$request->date,
+            "hour"=>$request->hour,
+            "favorite"=>$request->favorite,
+            "course_link"=>$request->course_link,
             "num_max"=>$request->num_max,
             "description"=>$request->description
         ]);
