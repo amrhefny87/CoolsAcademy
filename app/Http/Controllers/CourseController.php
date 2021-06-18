@@ -20,8 +20,6 @@ class CourseController extends Controller
     public function index()
     {
         $courses =Course::all()->sortBy('date');
-        //$courses =Course::orderBy('id','desc');
-        //dd($courses);
         return view('welcome')->with('courses',$courses);
     }
 
@@ -34,7 +32,6 @@ class CourseController extends Controller
     public function home()
     {
         $courses =Course::all()->sortBy('date');
-        //$courses =Course::orderBy('id','desc');
         return view('home')->with('courses',$courses);
     }
     
@@ -42,7 +39,6 @@ class CourseController extends Controller
     {
         $user =Auth::user();
         $courses = $user->courses;
-        //dd($courses);
         return view('myCourses', ['courses_users'=>$courses]);
         
     }
@@ -50,10 +46,8 @@ class CourseController extends Controller
     public function subscribe($id)
     {
         $user =User::find(Auth::id());
-        //$user =Auth::user();
         $courses = $user->courses;
         $course_id=Course::find($id);
-        //dd($user->courses);
         if ($courses->find($id) === null) {
         $user->courses()->attach($course_id);
         $this->sendEmail();
@@ -69,7 +63,6 @@ class CourseController extends Controller
         
         $user =User::find(Auth::id());
         $course_id=Course::find($id);
-        //dd($user->courses);
         $user->courses()->detach($course_id);
         return redirect()->route('myCourses');
     
@@ -144,10 +137,9 @@ class CourseController extends Controller
      * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id
-    )
+    public function update(Request $request,$id)
     {
-        //$course=Course::find($id);
+       
         $course = Course::whereId($id);
     
         $course->update([
@@ -158,11 +150,7 @@ class CourseController extends Controller
             "description"=>$request->description
         ]);
 
-        //$course->update($request->all());
-        //dd($course);
-
         return redirect()->route('home');//->with('message',"The course has been update successfully");
-
 
     }
 
@@ -180,19 +168,4 @@ class CourseController extends Controller
     }
 }
 
-//public function bookEvent($user_id, $id){
 
-    //$user = User::find($user_id);
-   // $event = Events::find($id);
-
-   // $user->EventsBookedIn()->attach($event->id);
-//}
-//public function CancelbookedEvent($user_id, $id){
-
-    //$user = User::find($user_id);
-    //$event = Events::find($id);
-
-    //$user->EventsBookedIn()->detach($event->id);
-//}
-
-//}
