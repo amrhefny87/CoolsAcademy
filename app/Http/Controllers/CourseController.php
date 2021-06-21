@@ -19,8 +19,9 @@ class CourseController extends Controller
      */
     public function index()
     {
+        $sliderCourses = Course::where('favorite', true)->orderByDesc('created_at')->take(6)->get();
         $courses =Course::all()->sortBy('date');
-        return view('welcome')->with('courses',$courses);
+        return view('welcome', ['sliderCourses'=>$sliderCourses, 'courses'=>$courses]);
     }
 
     /**
@@ -32,7 +33,7 @@ class CourseController extends Controller
     public function home()
     {
         $courses =Course::all()->sortBy('date');
-        return view('home')->with('courses',$courses);
+        return view('welcome')->with('courses',$courses);
     }
     
     public function myCourses()
@@ -54,7 +55,7 @@ class CourseController extends Controller
         return redirect()->route('myCourses');
         }
         
-        return redirect()->route('home')->with('message',"You are already subscribed in this course");
+        return redirect()->route('welcome')->with('message',"You are already subscribed in this course");
     
     }
 
@@ -96,13 +97,13 @@ class CourseController extends Controller
             "image"=>$request->image,
             "date"=>$request->date,
             "hour"=>$request->hour,
-            "favorite"=>$request->favorite,
             "course_link"=>$request->course_link,
             "num_max"=>$request->num_max,
+            "favorite"=>$request->has('favorite'),
             "description"=>$request->description
         ]);
         $course->save();
-        return redirect()->route('home');//->with('message',"The course has been created successfully");
+        return redirect()->route('welcome');//->with('message',"The course has been created successfully");
         
 
     }
@@ -139,18 +140,20 @@ class CourseController extends Controller
      */
     public function update(Request $request,$id)
     {
-       
         $course = Course::whereId($id);
     
         $course->update([
-        "course_name"=>$request->course_name,
+            "course_name"=>$request->course_name,
             "image"=>$request->image,
             "date"=>$request->date,
+            "hour"=>$request->hour,
+            "course_link"=>$request->course_link,
             "num_max"=>$request->num_max,
+            "favorite"=>$request->has('favorite'),
             "description"=>$request->description
         ]);
 
-        return redirect()->route('home');//->with('message',"The course has been update successfully");
+        return redirect()->route('welcome');//->with('message',"The course has been update successfully");
 
     }
 
@@ -163,7 +166,7 @@ class CourseController extends Controller
     public function destroy($id)
     {
         Course::find($id)->delete();
-        return redirect()->route('home')//->with('message',"The course has been created successfully");
+        return redirect()->route('welcome')//->with('message',"The course has been created successfully");
         ;
     }
 }

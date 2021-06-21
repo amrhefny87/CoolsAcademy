@@ -62,7 +62,7 @@
     <!--<div class="slider float-center">-->
         <div class="swiper-container">
             <div class="swiper-wrapper">
-                @foreach ($courses as $course)
+                @foreach ($sliderCourses as $course)
                 <div class="swiper-slide">
                     
                     <img src="{{$course->image}}" class="card-img-top p-2" style="border-radius:1rem" alt="...">

@@ -12,71 +12,69 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label class="col-md-4 col-form-label text-md-right">Course Name</label>
+                            <label for="course_name" class="col-md-4 col-form-label text-md-right">Course Name</label>
 
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="course_name" value="">
+                                <input type="text" class="form-control" name="course_name"  required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="image" class="col-md-4 col-form-label text-md-right">Image url</label>
+
+                            <div class="col-md-6">
+                                <input type="text" class="form-control " name="image"  required>
 
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-md-4 col-form-label text-md-right">Image url</label>
+                            <label for="date" class="col-md-4 col-form-label text-md-right">Date (yyyy-mm-dd)</label>
 
                             <div class="col-md-6">
-                                <input type="text" class="form-control " name="image" value="">
+                                <input  type="text" class="form-control" name="date" required>
 
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-md-4 col-form-label text-md-right">Date (yyyy-mm-dd)</label>
-
-                            <div class="col-md-6">
-                                <input  type="text" class="form-control" name="date">
-
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="col-md-4 col-form-label text-md-right">Hour</label>
+                            <label for="hour" class="col-md-4 col-form-label text-md-right">Hour</label>
                             
                             <div class="col-md-6">
-                                <input  type="appt-time" class="form-control" name="hour" min="00:00:00" max=“23:59:59”>
+                                <input  type="appt-time" class="form-control" name="hour" min="00:00:00" max=“23:59:59” required>
 
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-md-4 col-form-label text-md-right">Course Link</label>
+                            <label for="course_link" class="col-md-4 col-form-label text-md-right">Course Link</label>
 
                             <div class="col-md-6">
-                                <input  type="text" class="form-control" name="course_link">
+                                <input  type="text" class="form-control" name="course_link" required>
 
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label  class="col-md-4 col-form-label text-md-right">Num Max</label>
+                            <label for="num_max" class="col-md-4 col-form-label text-md-right">Num Max</label>
 
                             <div class="col-md-6">
-                                <input  type="number" class="form-control" name="num_max">
+                                <input  type="number" class="form-control" name="num_max" required>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label class="switch">
-                                <input type="radio" class="form-radio" name="favorite" value="1">
-                                <span class="slider round">Favorite</span>
+                            <label class="switch" for="favorite">
+                                Favorite
                             </label>
+                            <input type="checkbox"  name="favorite">
                         </div>
-                          
 
                         <div class="form-group row">
-                            <label  class="col-md-4 col-form-label text-md-right">Description</label>
+                            <label for="description" class="col-md-4 col-form-label text-md-right">Description</label>
 
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="description">
+                                <input type="text" class="form-control" name="description" required>
                             </div>
                         </div>
 
