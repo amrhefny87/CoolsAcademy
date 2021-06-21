@@ -55,7 +55,8 @@ class CourseController extends Controller
         }
         
         return redirect()->route('home')->with('message',"You are already subscribed in this course");
-    
+        
+
     }
 
     public function unsubscribe($id)

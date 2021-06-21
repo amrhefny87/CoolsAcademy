@@ -1,38 +1,10 @@
-@extends('layouts.app')
+<!--@extends('layouts.app')-->
+@extends('layouts.header')
 
 
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Laravel</title>
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-
-    <!-- SWipe JS-->
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-
-    <!-- Styles -->
-    <style>
-        /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
-        
-
-    </style>
-
-    <style>
-        body {
-            font-family: 'Nunito', sans-serif;
-        }
-
-    </style>
-
-</head>
 
 <body class="antialiased">
+    @section('welcome')
     
     <div
         class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
@@ -59,20 +31,25 @@
 
             </div>
         @endif
+    </div>
     <!--<div class="slider float-center">-->
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                @foreach ($courses as $course)
-                <div class="swiper-slide">
-                    
-                    <img src="{{$course->image}}" class="card-img-top p-2" style="border-radius:1rem" alt="...">
-                    
+        <div class="justify-content-center">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    @foreach ($courses as $course)
+                    @if ($courses->favorite)
+                    <div class="swiper-slide">
+                        
+                        <img src="{{$course->image}}" class="card-img-top p-2" alt="...">
+                        
+                    </div>
+                    @endif
+                    @endforeach
+        
                 </div>
-                @endforeach
-    
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
             </div>
-            <!-- Add Pagination -->
-            <div class="swiper-pagination"></div>
         </div>
     <!--</div>-->
 
@@ -81,8 +58,8 @@
 
                 <div class="container-fluid d-flex flex-wrap justify-content-around">
                     @foreach ($courses as $course)
-                        <div class=" mb-5 shadow-lg card-special" style="width: 18rem; border-radius:1rem;">
-                            <img src="{{ $course->image }}" class="card-img-top p-2" style="border-radius:1rem" alt="...">
+                        <div class=" mb-5 shadow-lg card-special" style="width: 18rem;">
+                            <img src="{{ $course->image }}" class="card-img-top p-2" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $course->course_name }}</h5>
                                 <p class="card-text"><small class="text-white">{{ $course->num_max }}</small></p>
@@ -103,9 +80,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    </div>
-    </div>
     </div>
 
     <!--<div class="flex justify-center mt-4 sm:items-center sm:justify-between">
