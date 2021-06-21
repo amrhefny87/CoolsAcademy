@@ -51,11 +51,15 @@
                             <img src="{{ $course->image }}" class="card-img-top p-2" style="border-radius:1rem" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $course->course_name }}</h5>
-                                <p class="card-text"><small class="text-white">{{ $course->num_max }}</small></p>
+                                <p class="card-text"><small class="text-white">{{$course->inscritos()}} de {{ $course->num_max }}</small></p>
                                 <p class="card-text"><small class="text-white">{{ $course->date }}</small></p>
                                 <p class="card-text">{{ $course->description }}</p>
                                
+                                @if (!$course->isFull())                                   
                                 <a href="{{ route('subscribe',["id"=>$course->id])}}" class="button-inscribe btn btn-success">Inscription</a>
+                                @else
+                                <a class="button-inscribe btn btn-danger">Course is Full</a> 
+                                @endif
                             </div>
                             
                         </div>

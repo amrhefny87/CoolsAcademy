@@ -31,7 +31,6 @@ class Course extends Model
 
     public function showCourses(){
 
-        
     }
 
   //Relacion many to many
@@ -39,4 +38,11 @@ class Course extends Model
       return $this->belongsToMany(User::class, 'courses_users');
     }
 
+    public function inscritos(){
+      return $this->users()->count();
+    }
+
+    public function isFull(){
+      return $this->inscritos() >= $this->num_max;
+    }
 }

@@ -85,7 +85,7 @@
                             <img src="{{ $course->image }}" class="card-img-top p-2" style="border-radius:1rem" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $course->course_name }}</h5>
-                                <p class="card-text"><small class="text-white">{{ $course->num_max }}</small></p>
+                                <p class="card-text"><small class="text-white">{{$course->inscritos()}} de {{ $course->num_max }}</small></p>
                                 <p class="card-text"><small class="text-white">{{ $course->date }}</small></p>
                                 <p class="card-text">{{ $course->description }}</p>
                                 @auth
@@ -94,8 +94,26 @@
                                         <a href="{{route('delete',  ["id"=>$course->id])}}" class="button-info btn btn-danger">delete course</a>
                                     @endif                                
                                 @endauth
+                                @auth
+                                @if (!$course->isFull()) 
+                                    @if (Auth::user()->isSubscribed($course)) 
+                                        <a href="{{ route('unsubscribe',["id"=>$course->id])}}" class="button-inscribe btn btn-success">Unsubscribe</a>
+                                    @else               
+                                        <a href="{{ route('subscribe',["id"=>$course->id])}}" class="button-inscribe btn btn-success">Inscription</a>
+                                    @endif
+                                @else
+                                    @if (Auth::user()->isSubscribed($course)) 
+                                        <a href="{{ route('unsubscribe',["id"=>$course->id])}}" class="button-inscribe btn btn-success">Unsubscribe</a>
+                                    @else   
+                                        <a class="button-inscribe btn btn-danger">Course is Full</a>
+                                    @endif
+                                @endif
+                                @endauth
+                                @if (Auth::user()==null)  
                                 <a href="{{ route('subscribe',["id"=>$course->id])}}" class="button-inscribe btn btn-success">Inscription</a>
+                                @endif
                                 <a href="{{route('show',  ["id"=>$course->id])}}" class="button-info btn btn-primary">More info</a>
+
                             </div>
                             
                         </div>
