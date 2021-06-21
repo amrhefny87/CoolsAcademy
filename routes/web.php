@@ -53,3 +53,5 @@ Route::get('/home/delete/{id}',[CourseController::class,'destroy'])->middleware(
 Route::get('/home/edit/{id}',[CourseController::class,'edit'])->middleware('admin')->name('edit');
 
 Route::post('/home/update/{id}',[CourseController::class,'update'])->middleware('admin')->name('update');
+
+Route::get('/home/show/{id}', [CourseController::class, 'show'])->name('show');

@@ -39,48 +39,14 @@
         @if (Route::has('login'))
             <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block float-right mr-5">
 
-                @auth
                     <a href="{{ url('/home') }}" class="text-sm text-white underline">Home</a>
-                    
-                    @if (Auth::user()->is_admin)
-                    <a href="{{route('create')}}" class="button-info btn btn-success">Create course</a>
-                    @else
-                    <a href="{{ route('myCourses') }}" class="text-sm text-white underline">My Courses</a>
-                    @endif
-                @else
-                    <a href="{{ route('login') }}" class="text-sm text-white underline">LOG IN</a>
-
-                    @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="ml-2 text-sm text-white underline">SIGN UP</a>
-                    @endif
-                @endauth
-
-                
-
             </div>
         @endif
-    <!--<div class="slider float-center">-->
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                @foreach ($courses as $course)
-                <div class="swiper-slide">
-                    
-                    <img src="{{$course->image}}" class="card-img-top p-2" style="border-radius:1rem" alt="...">
-                    
-                </div>
-                @endforeach
-    
-            </div>
-            <!-- Add Pagination -->
-            <div class="swiper-pagination"></div>
-        </div>
-    <!--</div>-->
-
+  
         <div class="container-md p-5">
             <div class="panel panel-default">
 
                 <div class="container-fluid d-flex flex-wrap justify-content-around">
-                    @foreach ($courses as $course)
                         <div class=" mb-5 shadow-lg card-special" style="width: 18rem; border-radius:1rem;">
                             <img src="{{ $course->image }}" class="card-img-top p-2" style="border-radius:1rem" alt="...">
                             <div class="card-body">
@@ -88,18 +54,11 @@
                                 <p class="card-text"><small class="text-white">{{ $course->num_max }}</small></p>
                                 <p class="card-text"><small class="text-white">{{ $course->date }}</small></p>
                                 <p class="card-text">{{ $course->description }}</p>
-                                @auth
-                                    @if (Auth::user()->is_admin)
-                                        <a href="{{route('edit',  ["id"=>$course->id])}}" class="button-info btn btn-warning">Edit course</a>
-                                        <a href="{{route('delete',  ["id"=>$course->id])}}" class="button-info btn btn-danger">delete course</a>
-                                    @endif                                
-                                @endauth
+                               
                                 <a href="{{ route('subscribe',["id"=>$course->id])}}" class="button-inscribe btn btn-success">Inscription</a>
-                                <a href="{{route('show',  ["id"=>$course->id])}}" class="button-info btn btn-primary">More info</a>
                             </div>
                             
                         </div>
-                    @endforeach
                 </div>
             </div>
         </div>
