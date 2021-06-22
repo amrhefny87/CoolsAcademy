@@ -19,8 +19,9 @@ class CourseController extends Controller
      */
     public function index()
     {
+        $sliderCourses = Course::where('favorite', true)->orderByDesc('created_at')->take(6)->get();
         $courses =Course::all()->sortBy('date');
-        return view('welcome')->with('courses',$courses);
+        return view('welcome', ['sliderCourses'=>$sliderCourses, 'courses'=>$courses]);
     }
 
     /**
@@ -31,8 +32,9 @@ class CourseController extends Controller
 
     public function home()
     {
+        $sliderCourses = Course::where('favorite', true)->orderByDesc('created_at')->take(6)->get();
         $courses =Course::all()->sortBy('date');
-        return view('home')->with('courses',$courses);
+        return view('home', ['sliderCourses'=>$sliderCourses, 'courses'=>$courses]);
     }
     
     public function myCourses()
@@ -93,9 +95,9 @@ class CourseController extends Controller
             "image"=>$request->image,
             "date"=>$request->date,
             "hour"=>$request->hour,
-            "favorite"=>$request->favorite,
             "course_link"=>$request->course_link,
             "num_max"=>$request->num_max,
+            "favorite"=>$request->has('favorite'),
             "description"=>$request->description
         ]);
         $course->save();
@@ -139,14 +141,16 @@ class CourseController extends Controller
      */
     public function update(Request $request,$id)
     {
-       
         $course = Course::whereId($id);
     
         $course->update([
-        "course_name"=>$request->course_name,
+            "course_name"=>$request->course_name,
             "image"=>$request->image,
             "date"=>$request->date,
+            "hour"=>$request->hour,
+            "course_link"=>$request->course_link,
             "num_max"=>$request->num_max,
+            "favorite"=>$request->has('favorite'),
             "description"=>$request->description
         ]);
 

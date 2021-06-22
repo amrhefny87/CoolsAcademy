@@ -40,7 +40,7 @@
             <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block float-right mr-5">
 
                 @auth
-                    <a href="{{ url('/home') }}" class="text-sm text-white underline">Home</a>
+                    <a href="{{ url('/') }}" class="text-sm text-white underline">Home</a>
                     
                     @if (Auth::user()->is_admin)
                     <a href="{{route('create')}}" class="button-info btn btn-success">Create course</a>
@@ -62,7 +62,7 @@
     <!--<div class="slider float-center">-->
         <div class="swiper-container">
             <div class="swiper-wrapper">
-                @foreach ($courses as $course)
+                @foreach ($sliderCourses as $course)
                 <div class="swiper-slide">
                     
                     <img src="{{$course->image}}" class="card-img-top p-2" style="border-radius:1rem" alt="...">

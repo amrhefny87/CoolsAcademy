@@ -10,12 +10,15 @@ class Course extends Model
 {
     use HasFactory;
 
-     protected $fillable = [
+      protected $fillable = [
       'course_name',
-      'description',
       'image',
       'date',
-      'num_max'
+      'hour',
+      'course_link',
+      'num_max',
+      'favorite',
+      'description',
       
   ];
 
@@ -29,9 +32,7 @@ class Course extends Model
     //protected $fillable = ['course_name','description','image','date','num_max'];
 
 
-    public function showCourses(){
 
-    }
 
   //Relacion many to many
     public function users(){
