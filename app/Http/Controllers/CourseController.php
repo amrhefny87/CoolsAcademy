@@ -20,7 +20,13 @@ class CourseController extends Controller
     public function index()
     {
         $courses =Course::all()->sortBy('date');
+        //$courses_users = Auth::user()->courses;
+        
+        //$this->myCourses();
+        //dd($courses_users);
         return view('welcome')->with('courses',$courses);
+        
+        //return view('welcome', ['courses_users'=>$courses]);
     }
 
     /**

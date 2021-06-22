@@ -65,7 +65,7 @@ body {
   
   background-image: url("../img/background.png");
   background-repeat: repeat;
-  background-size: contain;
+  background-size: cover;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -10059,16 +10059,41 @@ h3 {
   color: #000;
   margin: 0;
   padding: 2rem;
-  width:100%;
+  width:30%;
   background-color: rgba(0, 0, 0, 0.5);
 }
 
 .swiper-container {
-  width: 70%;
   
-
+  
  
 }
+@media (min-width: 576px) {
+  .swiper-container {
+    max-width: 540px;
+    max-height: 540px;
+  }
+}
+@media (min-width: 768px) {
+  .swiper-container {
+    max-width: 720px;
+    max-height: 720px;
+
+  }
+}
+@media (min-width: 992px) {
+  .swiper-container {
+    max-width: 700px;
+    max-height: 700px;
+  }
+}
+@media (min-width: 1200px) {
+  .swiper-container {
+    max-width: 800px;
+    max-height: 800px;
+  }
+}
+
 
 .swiper-slide {
   background-position: center;

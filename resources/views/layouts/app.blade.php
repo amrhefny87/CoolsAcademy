@@ -23,68 +23,86 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 </head>
 <body>
-    <div id="app">
+    <div>
+    
+        
         <nav class="navbar navbar-expand-md navbar-light shadow-sm bg-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <!-- Left Side Of Navbar -->
+                <ul class="navbar-nav mr-auto">
+                    <img src="./logo.png" class="mt-2">
+                    <a class="navbar-brand text-white ml-3" href="{{ url('/') }}">Cools Academy</a>
+                </ul>
+                
+                <!-- Right Side Of Navbar -->
+                <ul class="navbar-nav ml-auto">
+                    <!-- Authentication Links -->
+                    @guest
+                        @if (Route::has('login'))
+                            <li class="nav-item text-white">
+                                <a class="nav-link text-white" href="{{ route('login') }}">Login</a>
+                            </li>
+                        @endif
 
-            <div class="container">
+                        @if (Route::has('register'))
+                            <li class="nav-item text-white">
+                                <a class="nav-link text-white" href="{{ route('register') }}">Sign Up</a>
+                            </li>
+                        @endif
+                    @else
+                        <li class="nav-item text-white mt-2">
+                            <a href="{{ url('/home') }}" class="text-sm text-white underline">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }}
+                            </a>
 
-                <img src="../../../public/img/logo.png"
-                <a class="navbar-brand text-white" href="{{ url('/') }}">
-                    Cools Academy
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                    
-                    </ul>
-                    
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item text-white">
-                                    <a class="nav-link text-white" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item text-white">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item text-white" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
-                                                    document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                    @endguest
+                </ul>
             </div>
         </nav>
+    </div>
+        
+
+
+
 
         <main class="py-4">
             @yield('content')
-            @yield('content2')
+            @yield('welcome')
+            
         </main>
+        <footer class="sticky-bottom bg-dark text-white" >
+            <div class="d-flex align-items-center flex-column">
+            <h3 class="justify-content-center">Contact Us</h3>
+            
+            <p>cooldersversion2@gmail.com</p>
+            
+            <p>666000000</p>
+            
+            <p>Calle de los dolores, 1, 12-2</p>
+            <div class="ml-auto p-2">
+                <p>Copyrights @ Coolders</p>
+            </div>
+            </div>
+            
+        </footer>
     </div>
 
 
