@@ -21,7 +21,9 @@ class CourseController extends Controller
     {
         $sliderCourses = Course::where('favorite', true)->orderByDesc('created_at')->take(6)->get();
         $courses =Course::all()->sortBy('date');
+
         return view('welcome', ['sliderCourses'=>$sliderCourses, 'courses'=>$courses]);
+
     }
 
     /**
@@ -54,7 +56,9 @@ class CourseController extends Controller
             $user->subscribeTo($course);
             $this->sendEmail();
         }
+
         return redirect()->route('myCourses');
+
     }
 
     public function unsubscribe($id)
