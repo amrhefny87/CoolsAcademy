@@ -20,7 +20,7 @@ class CourseController extends Controller
     public function index()
     {
         $sliderCourses = Course::where('favorite', true)->orderByDesc('created_at')->take(6)->get();
-        $courses =Course::all()->sortBy('date');
+        $courses =Course::all()->sortByDesc('date');
 
         return view('welcome', ['sliderCourses'=>$sliderCourses, 'courses'=>$courses]);
 
@@ -35,7 +35,7 @@ class CourseController extends Controller
     public function home()
     {
         $sliderCourses = Course::where('favorite', true)->orderByDesc('created_at')->take(6)->get();
-        $courses =Course::all()->sortBy('date');
+        $courses =Course::all()->sortByDesc('date');
         return view('home', ['sliderCourses'=>$sliderCourses, 'courses'=>$courses]);
     }
     
@@ -69,6 +69,12 @@ class CourseController extends Controller
         $user->courses()->detach($course_id);
         return redirect()->route('myCourses');
     
+    }
+
+
+    public function deactivateCourse()
+    {
+
     }
 
     public function sendEmail()
