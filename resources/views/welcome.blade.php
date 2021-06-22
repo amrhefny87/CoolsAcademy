@@ -14,6 +14,7 @@
             <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block float-right mr-5">
 
                 @auth
+
                     
                     @if (Auth::user()->is_admin)
                     <a href="{{route('create')}}" class="button-info btn btn-success">Create course</a>
@@ -29,6 +30,7 @@
     </div>
    
     <!--<div class="slider float-center">-->
+
         <div class="container-md p-5">
             <div class="swiper-container float-center">
                 <div class="swiper-wrapper">
@@ -40,6 +42,7 @@
                             </div>
                         @endif
                     @endforeach
+
                 </div>
                 <!-- Add Pagination -->
                 <div class="swiper-pagination"></div>
@@ -56,7 +59,7 @@
                             <img src="{{ $course->image }}" class="card-img-top p-2" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $course->course_name }}</h5>
-                                <p class="card-text"><small class="text-white">{{ $course->num_max }}</small></p>
+                                <p class="card-text"><small class="text-white">{{$course->inscritos()}} de {{ $course->num_max }}</small></p>
                                 <p class="card-text"><small class="text-white">{{ $course->date }}</small></p>
                                 <p class="card-text">{{ $course->description }}</p>
                                 @auth
@@ -69,8 +72,26 @@
                                     @endif
                                     
                                 @endauth
+                                @auth
+                                @if (!$course->isFull()) 
+                                    @if (Auth::user()->isSubscribed($course)) 
+                                        <a href="{{ route('unsubscribe',["id"=>$course->id])}}" class="button-inscribe btn btn-success">Unsubscribe</a>
+                                    @else               
+                                        <a href="{{ route('subscribe',["id"=>$course->id])}}" class="button-inscribe btn btn-success">Inscription</a>
+                                    @endif
+                                @else
+                                    @if (Auth::user()->isSubscribed($course)) 
+                                        <a href="{{ route('unsubscribe',["id"=>$course->id])}}" class="button-inscribe btn btn-success">Unsubscribe</a>
+                                    @else   
+                                        <a class="button-inscribe btn btn-danger">Course is Full</a>
+                                    @endif
+                                @endif
+                                @endauth
+                                @if (Auth::user()==null)  
                                 <a href="{{ route('subscribe',["id"=>$course->id])}}" class="button-inscribe btn btn-success">Inscription</a>
-                                <a href="" class="button-info btn btn-primary">More info</a>
+                                @endif
+                                <a href="{{route('show',  ["id"=>$course->id])}}" class="button-info btn btn-primary">More info</a>
+
                             </div>
                             
                         </div>

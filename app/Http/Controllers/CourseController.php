@@ -19,14 +19,11 @@ class CourseController extends Controller
      */
     public function index()
     {
+        $sliderCourses = Course::where('favorite', true)->orderByDesc('created_at')->take(6)->get();
         $courses =Course::all()->sortBy('date');
-        //$courses_users = Auth::user()->courses;
-        
-        //$this->myCourses();
-        //dd($courses_users);
-        return view('welcome')->with('courses',$courses);
-        
-        //return view('welcome', ['courses_users'=>$courses]);
+
+        return view('welcome', ['sliderCourses'=>$sliderCourses, 'courses'=>$courses]);
+
     }
 
     /**
@@ -37,8 +34,9 @@ class CourseController extends Controller
 
     public function home()
     {
+        $sliderCourses = Course::where('favorite', true)->orderByDesc('created_at')->take(6)->get();
         $courses =Course::all()->sortBy('date');
-        return view('home')->with('courses',$courses);
+        return view('home', ['sliderCourses'=>$sliderCourses, 'courses'=>$courses]);
     }
     
     public function myCourses()
@@ -49,19 +47,17 @@ class CourseController extends Controller
         
     }
 
-    public function subscribe($id)
+    public function subscribe($id) 
     {
         $user =User::find(Auth::id());
-        $courses = $user->courses;
-        $course_id=Course::find($id);
-        if ($courses->find($id) === null) {
-        $user->courses()->attach($course_id);
-        $this->sendEmail();
-        return redirect()->route('myCourses');
+        // $courses = $user->courses;
+        $course=Course::find($id);
+        if (!$user->isSubscribed($course)){
+            $user->subscribeTo($course);
+            $this->sendEmail();
         }
-        
-        return redirect()->route('home')->with('message',"You are already subscribed in this course");
-        
+
+        return redirect()->route('myCourses');
 
     }
 
@@ -103,9 +99,9 @@ class CourseController extends Controller
             "image"=>$request->image,
             "date"=>$request->date,
             "hour"=>$request->hour,
-            "favorite"=>$request->favorite,
             "course_link"=>$request->course_link,
             "num_max"=>$request->num_max,
+            "favorite"=>$request->has('favorite'),
             "description"=>$request->description
         ]);
         $course->save();
@@ -120,9 +116,11 @@ class CourseController extends Controller
      * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function show(Course $course)
+    public function show($id)
     {
-        //
+        $course=Course::find($id);
+        return view('show', compact('course'));
+
     }
 
     /**
@@ -137,6 +135,7 @@ class CourseController extends Controller
         return view ('edit', compact('course'));
     }
 
+
     /**
      * Update the specified resource in storage.
      *
@@ -146,14 +145,16 @@ class CourseController extends Controller
      */
     public function update(Request $request,$id)
     {
-       
         $course = Course::whereId($id);
     
         $course->update([
-        "course_name"=>$request->course_name,
+            "course_name"=>$request->course_name,
             "image"=>$request->image,
             "date"=>$request->date,
+            "hour"=>$request->hour,
+            "course_link"=>$request->course_link,
             "num_max"=>$request->num_max,
+            "favorite"=>$request->has('favorite'),
             "description"=>$request->description
         ]);
 
