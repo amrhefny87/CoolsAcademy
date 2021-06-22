@@ -32,8 +32,9 @@ class CourseController extends Controller
 
     public function home()
     {
+        $sliderCourses = Course::where('favorite', true)->orderByDesc('created_at')->take(6)->get();
         $courses =Course::all()->sortBy('date');
-        return view('welcome')->with('courses',$courses);
+        return view('home', ['sliderCourses'=>$sliderCourses, 'courses'=>$courses]);
     }
     
     public function myCourses()
@@ -44,19 +45,16 @@ class CourseController extends Controller
         
     }
 
-    public function subscribe($id)
+    public function subscribe($id) 
     {
         $user =User::find(Auth::id());
-        $courses = $user->courses;
-        $course_id=Course::find($id);
-        if ($courses->find($id) === null) {
-        $user->courses()->attach($course_id);
-        $this->sendEmail();
-        return redirect()->route('myCourses');
+        // $courses = $user->courses;
+        $course=Course::find($id);
+        if (!$user->isSubscribed($course)){
+            $user->subscribeTo($course);
+            $this->sendEmail();
         }
-        
-        return redirect()->route('welcome')->with('message',"You are already subscribed in this course");
-    
+        return redirect()->route('myCourses');
     }
 
     public function unsubscribe($id)
@@ -103,7 +101,7 @@ class CourseController extends Controller
             "description"=>$request->description
         ]);
         $course->save();
-        return redirect()->route('welcome');//->with('message',"The course has been created successfully");
+        return redirect()->route('home');//->with('message',"The course has been created successfully");
         
 
     }
@@ -114,9 +112,11 @@ class CourseController extends Controller
      * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function show(Course $course)
+    public function show($id)
     {
-        //
+        $course=Course::find($id);
+        return view('show', compact('course'));
+
     }
 
     /**
@@ -130,6 +130,7 @@ class CourseController extends Controller
         $course=Course::find($id);
         return view ('edit', compact('course'));
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -153,7 +154,7 @@ class CourseController extends Controller
             "description"=>$request->description
         ]);
 
-        return redirect()->route('welcome');//->with('message',"The course has been update successfully");
+        return redirect()->route('home');//->with('message',"The course has been update successfully");
 
     }
 
@@ -166,7 +167,7 @@ class CourseController extends Controller
     public function destroy($id)
     {
         Course::find($id)->delete();
-        return redirect()->route('welcome')//->with('message',"The course has been created successfully");
+        return redirect()->route('home')//->with('message',"The course has been created successfully");
         ;
     }
 }
