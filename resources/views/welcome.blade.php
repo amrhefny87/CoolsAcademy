@@ -64,7 +64,11 @@
                             <img src="{{ $course->image }}" class="card-img-top p-2" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $course->course_name }}</h5>
-                                <p class="card-text"><small class="text-white">{{$course->inscritos()}} de {{ $course->num_max }}</small></p>
+                                @if (($course->num_max - $course->inscritos()) <= 0)
+                                <p class="card-text"><small class="text-danger">No places available</small></p>
+                                @else
+                                <p class="card-text"><small class="text-white">Available places: {{$course->num_max - $course->inscritos()}}</small></p>
+                                @endif
                                 <p class="card-text"><small class="text-white">{{ $course->date }}</small></p>
                                 <p class="card-text">{{ $course->description }}</p>
                                 @auth
@@ -84,15 +88,15 @@
                                 @auth
                                 @if (!$course->isFull()) 
                                     @if (Auth::user()->isSubscribed($course)) 
-                                        <a href="{{ route('unsubscribe',["id"=>$course->id])}}" class="ml-2 text-white underline">Unsubscribe</a>
+                                        <a href="{{ route('unsubscribe',["id"=>$course->id])}}" class="text-white underline">Unsubscribe</a>
                                     @else               
-                                        <a href="{{ route('subscribe',["id"=>$course->id])}}" class="ml-2 text-white underline">Inscription</a>
+                                        <a href="{{ route('subscribe',["id"=>$course->id])}}" class="text-white underline">Inscribe</a>
                                     @endif
                                 @else
                                     @if (Auth::user()->isSubscribed($course)) 
-                                        <a href="{{ route('unsubscribe',["id"=>$course->id])}}" class="ml-2 text-white underline">Unsubscribe</a>
+                                        <a href="{{ route('unsubscribe',["id"=>$course->id])}}" class="text-white underline">Unsubscribe</a>
                                     @else   
-                                        <a class="ml-2 text-danger">Course is Full</a>
+                                        <a class="text-danger">Course is Full</a>
                                     @endif
                                 @endif
                                 @endauth

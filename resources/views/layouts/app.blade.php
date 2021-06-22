@@ -85,13 +85,21 @@
         <main class="py-4">
             @yield('content')
             @yield('welcome')
+            @yield('show')
             
         </main>
         <footer class="sticky-bottom bg-dark text-white" style="max-height: 15%" >
             <div class="d-flex align-items-center flex-column">
             <h3 class="justify-content-center">Contact Us</h3>
             <div>
-            <img src="{{asset('img/phone.png')}}" class="mr-1" style="max-width: 40px;">
+            
+
+            <a id="phoneDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    <img src="{{asset('img/phone.png')}}" class="mr-1" style="max-width: 40px;">
+            </a>
+
+                <p class="dropdown-menu dropdown-menu-right" aria-labelledby="phoneDropdown">666000000</p>
+
             <a class="mailto" href="mailto:contact@test.com">
                 <img src="{{asset('img/email.png')}}" class="mt-1" style="max-width: 30px;">
             </a>
