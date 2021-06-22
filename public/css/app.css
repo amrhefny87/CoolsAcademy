@@ -65,7 +65,7 @@ body {
   
   background-image: url("../img/background.png");
   background-repeat: repeat;
-  background-size: cover;
+  background-size: contain;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
