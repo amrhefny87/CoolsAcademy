@@ -60,8 +60,59 @@
             
                 <div class="container-fluid d-flex flex-wrap justify-content-around">
                     @foreach ($courses as $course)
+                    @if (($course->num_max - $course->inscritos()) <= 0)
+                    <div class=" mb-5 shadow-lg card-special-grey" style="width: 18rem;">
+                            <div style="height:14rem">
+                            <img src="{{asset('img/notavailable.png')}}" class="card-img-top p-3" alt="...">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title text-white">{{ $course->course_name }}</h5>
+                                
+                                <p class="card-text"><small class="text-danger">No places available</small></p>
+                                
+                                
+                               
+                                <p class="card-text"><small class="text-white">{{ $course->date }}</small></p>
+                                <p class="card-text text-white">{{ $course->description }}</p>
+                                @auth
+                                    @if (Auth::user()->is_admin)
+                                        <a href="{{route('edit',  ["id"=>$course->id])}}" >
+                                            <img src="{{asset('img/edit.png')}}" style="max-width: 25px;">
+                                        </a>
+                                        <a href="{{route('delete',  ["id"=>$course->id])}}">
+                                            <img src="{{asset('img/delete.png')}}" style="max-width: 25px;">
+                                        </a>
+                                      
+                                                 
+                              
+                                    @endif
+                                    
+                                @endauth
+                                @auth
+                                @if (!$course->isFull()) 
+                                    @if (Auth::user()->isSubscribed($course)) 
+                                        <a href="{{ route('unsubscribe',["id"=>$course->id])}}" class="text-white underline">Unsubscribe</a>
+                                    @else               
+                                        <a href="{{ route('subscribe',["id"=>$course->id])}}" class="text-white underline">Inscribe</a>
+                                    @endif
+                                @else
+                                    @if (Auth::user()->isSubscribed($course)) 
+                                        <a href="{{ route('unsubscribe',["id"=>$course->id])}}" class="text-white underline">Unsubscribe</a>
+                                    @else   
+                                        <a class="text-danger">Course is Full</a>
+                                    @endif
+                                @endif
+                                @endauth
+                                <a href="{{route('show',  ["id"=>$course->id])}}" class="text-white underline">More info</a>
+
+                            </div>
+                            
+                        </div>
+                    @else
                     <div class=" mb-5 shadow-lg card-special" style="width: 18rem;">
+                            <div style="height:14rem">
                             <img src="{{ $course->image }}" class="card-img-top p-2" alt="...">
+                            </div>
                             <div class="card-body">
                                 <h5 class="card-title">{{ $course->course_name }}</h5>
                                 @if (($course->num_max - $course->inscritos()) <= 0)
@@ -108,6 +159,10 @@
                             </div>
                             
                         </div>
+          
+
+
+                    @endif
                     @endforeach
                 </div>
             
