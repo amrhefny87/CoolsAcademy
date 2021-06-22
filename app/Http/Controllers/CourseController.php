@@ -33,7 +33,7 @@ class CourseController extends Controller
     public function home()
     {
         $courses =Course::all()->sortBy('date');
-        return view('welcome')->with('courses',$courses);
+        return view('home')->with('courses',$courses);
     }
     
     public function myCourses()
