@@ -33,8 +33,6 @@ Auth::routes();
 
 Route::get('/', [CourseController::class, 'index'])->name('welcome');
 
-//Route::get('/home', [CourseController::class, 'home'])->name('home');
-
 Route::get('/myCourses', [CourseController::class, 'myCourses'])->middleware('auth')->name('myCourses');
 
 

@@ -40,7 +40,7 @@
             <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block float-right mr-5">
 
                 @auth
-                    <a href="{{ url('/welcome') }}" class="text-sm text-white underline">Home</a>
+                    <a href="{{ url('/') }}" class="text-sm text-white underline">Home</a>
                     
                     @if (Auth::user()->is_admin)
                     <a href="{{route('create')}}" class="button-info btn btn-success">Create course</a>
