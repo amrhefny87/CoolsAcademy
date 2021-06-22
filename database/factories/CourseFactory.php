@@ -24,10 +24,13 @@ class CourseFactory extends Factory
     {
         return [
             'course_name'=>$this->faker->word(),
-            'date'=>$this->faker->dateTime(),
             'description'=>$this->faker->word(),
             'image'=>$this->faker->imageUrl(),
-            'num_max'=>$this->faker->randomNumber(),
+            'date'=>$this->faker->date(),  
+            'hour'=>$this->faker->time(),  
+            'course_link'=>$this->faker->url(),
+            'favorite'=>$this->faker->boolean(),
+            'num_max'=>$this->faker->randomNumber(1, 50),
         ];
     }
 }

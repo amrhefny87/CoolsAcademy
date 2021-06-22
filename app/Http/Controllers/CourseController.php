@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Mail\WelcomeToCourseMailable;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Http\Response;
 
 class CourseController extends Controller
 {
@@ -18,9 +19,11 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses =Course::all();
-        //dd($courses);
-        return view('welcome')->with('courses',$courses);
+        $sliderCourses = Course::where('favorite', true)->orderByDesc('created_at')->take(6)->get();
+        $courses =Course::all()->sortBy('date');
+
+        return view('welcome', ['sliderCourses'=>$sliderCourses, 'courses'=>$courses]);
+
     }
 
     /**
@@ -31,29 +34,31 @@ class CourseController extends Controller
 
     public function home()
     {
-        $courses =Course::all();
-        return view('home')->with('courses',$courses);
+        $sliderCourses = Course::where('favorite', true)->orderByDesc('created_at')->take(6)->get();
+        $courses =Course::all()->sortBy('date');
+        return view('home', ['sliderCourses'=>$sliderCourses, 'courses'=>$courses]);
     }
     
     public function myCourses()
     {
         $user =Auth::user();
         $courses = $user->courses;
-        //dd($courses);
         return view('myCourses', ['courses_users'=>$courses]);
         
     }
 
-    public function subscribe($id)
+    public function subscribe($id) 
     {
         $user =User::find(Auth::id());
-        //$user =Auth::user();
-        $course_id=Course::find($id);
-        //dd($user->courses);
-        $user->courses()->attach($course_id);
-        $this->sendEmail();
+        // $courses = $user->courses;
+        $course=Course::find($id);
+        if (!$user->isSubscribed($course)){
+            $user->subscribeTo($course);
+            $this->sendEmail();
+        }
+
         return redirect()->route('myCourses');
-       
+
     }
 
     public function unsubscribe($id)
@@ -61,16 +66,15 @@ class CourseController extends Controller
         
         $user =User::find(Auth::id());
         $course_id=Course::find($id);
-        //dd($user->courses);
         $user->courses()->detach($course_id);
         return redirect()->route('myCourses');
-       
+    
     }
 
-    public function sendEmail ()
+    public function sendEmail()
     {
         $correo = new WelcomeToCourseMailable;
-   
+
         Mail::to("cooldersversion2@gmail.com")->send($correo);
         
         return redirect()->route('myCourses');
@@ -79,7 +83,7 @@ class CourseController extends Controller
 
     public function create()
     {
-        //
+        return view('create');
     }
 
     /**
@@ -90,7 +94,20 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $course = Course::create([
+            "course_name"=>$request->course_name,
+            "image"=>$request->image,
+            "date"=>$request->date,
+            "hour"=>$request->hour,
+            "course_link"=>$request->course_link,
+            "num_max"=>$request->num_max,
+            "favorite"=>$request->has('favorite'),
+            "description"=>$request->description
+        ]);
+        $course->save();
+        return redirect()->route('home');//->with('message',"The course has been created successfully");
+        
+
     }
 
     /**
@@ -99,9 +116,11 @@ class CourseController extends Controller
      * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function show(Course $course)
+    public function show($id)
     {
-        //
+        $course=Course::find($id);
+        return view('show', compact('course'));
+
     }
 
     /**
@@ -110,10 +129,12 @@ class CourseController extends Controller
      * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function edit(Course $course)
+    public function edit($id)
     {
-        //
+        $course=Course::find($id);
+        return view ('edit', compact('course'));
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -122,9 +143,23 @@ class CourseController extends Controller
      * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Course $course)
+    public function update(Request $request,$id)
     {
-        //
+        $course = Course::whereId($id);
+    
+        $course->update([
+            "course_name"=>$request->course_name,
+            "image"=>$request->image,
+            "date"=>$request->date,
+            "hour"=>$request->hour,
+            "course_link"=>$request->course_link,
+            "num_max"=>$request->num_max,
+            "favorite"=>$request->has('favorite'),
+            "description"=>$request->description
+        ]);
+
+        return redirect()->route('home');//->with('message',"The course has been update successfully");
+
     }
 
     /**
@@ -133,25 +168,12 @@ class CourseController extends Controller
      * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Course $course)
+    public function destroy($id)
     {
-        //
+        Course::find($id)->delete();
+        return redirect()->route('home')//->with('message',"The course has been created successfully");
+        ;
     }
 }
 
-//public function bookEvent($user_id, $id){
 
-    //$user = User::find($user_id);
-   // $event = Events::find($id);
-
-   // $user->EventsBookedIn()->attach($event->id);
-//}
-//public function CancelbookedEvent($user_id, $id){
-
-    //$user = User::find($user_id);
-    //$event = Events::find($id);
-
-    //$user->EventsBookedIn()->detach($event->id);
-//}
-
-//}
