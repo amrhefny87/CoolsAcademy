@@ -25,6 +25,8 @@ class CreateCoursesUsersTable extends Migration
         });
     }
 
+
+
     /**
      * Reverse the migrations.
      *

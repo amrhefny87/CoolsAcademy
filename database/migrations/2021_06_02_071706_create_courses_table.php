@@ -19,6 +19,9 @@ class CreateCoursesTable extends Migration
             $table->string('description');
             $table->string('image');
             $table->date('date');
+            $table->time('hour')->default('00:00:00');
+            $table->string('course_link')->nullable();
+            $table->boolean('favorite')->default(0);
             $table->integer('num_max');
             $table->timestamps();
         });
