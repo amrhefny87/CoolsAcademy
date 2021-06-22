@@ -17,7 +17,12 @@
 
                     
                     @if (Auth::user()->is_admin)
-                    <a href="{{route('create')}}" class="button-info btn btn-success">Create course</a>
+                    <a href="{{route('create')}}">
+                        <div>
+                            <img src="{{asset('img/add.png')}}" style="max-width: 40px;">
+                            <p class="text-white">Create New Course</p>
+                        </div>
+                    </a>
                     @else
                     <a href="{{ route('myCourses') }}" class="text-sm text-white underline">My Courses</a>
                     @endif
@@ -64,8 +69,12 @@
                                 <p class="card-text">{{ $course->description }}</p>
                                 @auth
                                     @if (Auth::user()->is_admin)
-                                        <a href="{{route('edit',  ["id"=>$course->id])}}" class="button-info btn btn-warning">Edit course</a>
-                                        <a href="{{route('delete',  ["id"=>$course->id])}}" class="button-info btn btn-danger">delete course</a>
+                                        <a href="{{route('edit',  ["id"=>$course->id])}}" >
+                                            <img src="{{asset('img/edit.png')}}" style="max-width: 25px;">
+                                        </a>
+                                        <a href="{{route('delete',  ["id"=>$course->id])}}">
+                                            <img src="{{asset('img/delete.png')}}" style="max-width: 25px;">
+                                        </a>
                                       
                                                  
                               
@@ -75,22 +84,22 @@
                                 @auth
                                 @if (!$course->isFull()) 
                                     @if (Auth::user()->isSubscribed($course)) 
-                                        <a href="{{ route('unsubscribe',["id"=>$course->id])}}" class="button-inscribe btn btn-success">Unsubscribe</a>
+                                        <a href="{{ route('unsubscribe',["id"=>$course->id])}}" class="ml-2 text-white underline">Unsubscribe</a>
                                     @else               
-                                        <a href="{{ route('subscribe',["id"=>$course->id])}}" class="button-inscribe btn btn-success">Inscription</a>
+                                        <a href="{{ route('subscribe',["id"=>$course->id])}}" class="ml-2 text-white underline">Inscription</a>
                                     @endif
                                 @else
                                     @if (Auth::user()->isSubscribed($course)) 
-                                        <a href="{{ route('unsubscribe',["id"=>$course->id])}}" class="button-inscribe btn btn-success">Unsubscribe</a>
+                                        <a href="{{ route('unsubscribe',["id"=>$course->id])}}" class="ml-2 text-white underline">Unsubscribe</a>
                                     @else   
-                                        <a class="button-inscribe btn btn-danger">Course is Full</a>
+                                        <a class="ml-2 text-danger">Course is Full</a>
                                     @endif
                                 @endif
                                 @endauth
                                 @if (Auth::user()==null)  
-                                <a href="{{ route('subscribe',["id"=>$course->id])}}" class="button-inscribe btn btn-success">Inscription</a>
+                                <a href="{{ route('subscribe',["id"=>$course->id])}}" class="ml-2 text-white underline">Inscription</a>
                                 @endif
-                                <a href="{{route('show',  ["id"=>$course->id])}}" class="button-info btn btn-primary">More info</a>
+                                <a href="{{route('show',  ["id"=>$course->id])}}" class="ml-2 text-white underline">More info</a>
 
                             </div>
                             
