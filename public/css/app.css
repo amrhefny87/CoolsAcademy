@@ -4346,6 +4346,23 @@ input[type=button].btn-block {
   
 }
 
+.card-special2 {
+  background: linear-gradient(
+        45deg,
+        rgba(159, 231, 218, 0.5),
+        rgba(91, 14, 214, 0.5) 100%
+      );
+  border-radius: 1rem;
+} 
+
+.card-special-black {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  
+}
+
+
+
 .card-special:hover {
   background: linear-gradient(
         45deg,
@@ -10047,14 +10064,41 @@ h3 {
   color: #000;
   margin: 0;
   padding: 2rem;
-  width:100%;
+  width:30%;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .swiper-container {
-  width: 50%;
-
+  
+  
  
 }
+@media (min-width: 576px) {
+  .swiper-container {
+    max-width: 540px;
+    max-height: 540px;
+  }
+}
+@media (min-width: 768px) {
+  .swiper-container {
+    max-width: 720px;
+    max-height: 720px;
+
+  }
+}
+@media (min-width: 992px) {
+  .swiper-container {
+    max-width: 700px;
+    max-height: 700px;
+  }
+}
+@media (min-width: 1200px) {
+  .swiper-container {
+    max-width: 800px;
+    max-height: 800px;
+  }
+}
+
 
 .swiper-slide {
   background-position: center;
