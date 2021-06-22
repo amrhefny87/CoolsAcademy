@@ -60,8 +60,11 @@
                                 {{ Auth::user()->name }}
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}"
+                            <div class="dropdown-menu dropdown-menu-right" 
+                                style="background-color: rgba(0, 0, 0, 0.5);color: #fff;" 
+                                aria-labelledby="navbarDropdown">
+
+                                <a class="dropdown-item text-white" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
@@ -88,7 +91,7 @@
             @yield('show')
             
         </main>
-        <footer class="sticky-bottom bg-dark text-white" style="max-height: 15%" >
+        <footer class="sticky-bottom bg-dark text-white" style="max-height: 22%" >
             <div class="d-flex align-items-center flex-column">
             <h3 class="justify-content-center">Contact Us</h3>
             <div>
@@ -98,7 +101,9 @@
                     <img src="{{asset('img/phone.png')}}" class="mr-1" style="max-width: 40px;">
             </a>
 
-                <p class="dropdown-menu dropdown-menu-right" aria-labelledby="phoneDropdown">666000000</p>
+                <p class="dropdown-menu dropdown-menu-center text-white" 
+                    style="background-color: rgba(0, 0, 0, 0.5);color: #fff;"
+                    aria-labelledby="phoneDropdown">666000000</p>
 
             <a class="mailto" href="mailto:contact@test.com">
                 <img src="{{asset('img/email.png')}}" class="mt-1" style="max-width: 30px;">

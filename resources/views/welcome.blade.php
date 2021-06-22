@@ -60,7 +60,7 @@
             
                 <div class="container-fluid d-flex flex-wrap justify-content-around">
                     @foreach ($courses as $course)
-                        <div class=" mb-5 shadow-lg card-special" style="width: 18rem;">
+                    <div class=" mb-5 shadow-lg card-special" style="width: 18rem;">
                             <img src="{{ $course->image }}" class="card-img-top p-2" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $course->course_name }}</h5>
