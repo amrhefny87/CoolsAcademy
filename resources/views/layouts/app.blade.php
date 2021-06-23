@@ -114,8 +114,8 @@
             </a>
 
             </div>
-            <div class="ml-auto p-2">
-                <p>Copyrights @ Coolders</p>
+            <div class="ml-auto p-2 ">
+                <p><small> Copyrights @ Coolders</small></p>
             </div>
             </div>
             

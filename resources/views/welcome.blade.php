@@ -67,11 +67,7 @@
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title text-white">{{ $course->course_name }}</h5>
-                                
                                 <p class="card-text"><small class="text-danger">No places available</small></p>
-                                
-                                
-                               
                                 <p class="card-text"><small class="text-white">{{ $course->date }}</small></p>
                                 <p class="card-text text-white">{{ $course->description }}</p>
                                 @auth
