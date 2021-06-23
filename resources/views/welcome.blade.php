@@ -65,10 +65,7 @@
                                 @auth
                                     @if (Auth::user()->is_admin)
                                         <a href="{{route('edit',  ["id"=>$course->id])}}" class="button-info btn btn-warning">Edit course</a>
-                                        <a href="{{route('delete',  ["id"=>$course->id])}}" class="button-info btn btn-danger">delete course</a>
-                                      
-                                                 
-                              
+                                        <a href="{{route('delete',  ["id"=>$course->id])}}" class="button-info btn btn-danger">delete course</a
                                     @endif
                                     
                                 @endauth
