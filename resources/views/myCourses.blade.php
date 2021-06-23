@@ -1,12 +1,10 @@
 @extends('layouts.app')
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card-special2">
                 <div class="container-fluid d-flex flex-wrap justify-content-around">
-                    
                     @foreach ($courses_users as $myCourse)
                     {{-- @if ($id == $courses_users->user_id) --}}
                     <div class="card-special mb-5 mt-5" style="width: 18rem;">
@@ -29,8 +27,4 @@
         </div>
     </div>
 </div>
-
 @endsection
-
-
-

@@ -33,8 +33,7 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
-                    <img src="./logo.png" class="mt-2">
-                    <a class="navbar-brand text-white ml-3" href="{{ url('/') }}">Cools Academy</a>
+                    <img src="{{asset('img/logo.png')}}" class="mt-2">
                 </ul>
                 
                 <!-- Right Side Of Navbar -->
@@ -88,15 +87,20 @@
             @yield('welcome')
             
         </main>
-        <footer class="sticky-bottom bg-dark text-white" >
+        <footer class="sticky-bottom bg-dark text-white" style="max-height: 15%" >
             <div class="d-flex align-items-center flex-column">
             <h3 class="justify-content-center">Contact Us</h3>
+            <div>
+            <img src="{{asset('img/phone.png')}}" class="mr-1" style="max-width: 40px;">
+            <a class="mailto" href="mailto:contact@test.com">
+                <img src="{{asset('img/email.png')}}" class="mt-1" style="max-width: 30px;">
+            </a>
             
-            <p>cooldersversion2@gmail.com</p>
-            
-            <p>666000000</p>
-            
-            <p>Calle de los dolores, 1, 12-2</p>
+            <a href="https://www.google.com/maps/dir/41.3907372,2.1745004/google+map+factoria+f5/@41.3948965,2.1600008,15z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x12a4a3269e417c55:0xb436628565250d66!2m2!1d2.1634741!2d41.3987552" target="_blank">
+                <img src="{{asset('img/location.png')}}" style="max-width: 25px;">
+            </a>
+
+            </div>
             <div class="ml-auto p-2">
                 <p>Copyrights @ Coolders</p>
             </div>
