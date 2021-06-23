@@ -79,9 +79,11 @@ class CourseController extends Controller
 
     public function sendEmail()
     {
-        $correo = new WelcomeToCourseMailable;
+        $correo = new WelcomeToCourseMailable ();
+        $user = Auth::user();
 
-        Mail::to("cooldersversion2@gmail.com")->send($correo);
+        //Mail::to("cooldersversion2@gmail.com")->send($correo);
+        Mail::to($user->email)->send($correo);
         
         return redirect()->route('myCourses');
         
