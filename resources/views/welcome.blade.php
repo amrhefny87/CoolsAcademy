@@ -84,9 +84,22 @@
                                 @auth
                                 @if (!$course->isFull()) 
                                     @if (Auth::user()->isSubscribed($course)) 
+
+                                        <a href="{{ route('unsubscribe',["id"=>$course->id])}}" class="button-inscribe btn btn-success">Unsubscribe</a>
+                                    @else 
+                                      @if ($course->date> now())
+                                        <a href="{{ route('subscribe',["id"=>$course->id])}}" class="button-inscribe btn btn-success">Inscription</a>
+                                        @else 
+                                        <a  class="ropdown-menu dropdown-menu-right btn btn-warning"  id="doneDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Unavailable
+                                    </a>
+                                        <p class="dropdown-menu dropdown-menu-right" aria-labelledby="doneDropdown">Sorry, the course is not available.</p>
+
+                                      @endif
+
                                         <a href="{{ route('unsubscribe',["id"=>$course->id])}}" class="ml-2 text-white underline">Unsubscribe</a>
                                     @else               
                                         <a href="{{ route('subscribe',["id"=>$course->id])}}" class="ml-2 text-white underline">Inscription</a>
+
                                     @endif
                                 @else
                                     @if (Auth::user()->isSubscribed($course)) 
