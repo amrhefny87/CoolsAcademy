@@ -37,22 +37,30 @@
     <div
         
   
-        <div class="container-md p-5">
+        <div class="container-md p-5" >
             <div class="panel panel-default">
 
                 <div class="container-fluid d-flex flex-wrap justify-content-around">
-                        
                             <img src="{{ $course->image }}" class="card-img-top p-2" style="border-radius:1rem; max-height:600px; max-width:600px" alt="...">
+                
                             <div class="card-body">
                                 <h5 class="card-title text-white">{{ $course->course_name }}</h5>
+                                @if(($course->num_max - $course->inscritos()) <= 0)
+                                <p class="text-danger">There are no places available</p>
+                                else
                                 <p class="card-text"><small class="text-white">{{$course->inscritos()}} de {{ $course->num_max }}</small></p>
+                                @endif
                                 <p class="card-text"><small class="text-white">{{ $course->date }}</small></p>
                                 <p class="card-text text-white">{{ $course->description }}</p>
                                
-                                @if (!$course->isFull())                                   
-                                <a href="{{ route('subscribe',["id"=>$course->id])}}" class="button-inscribe btn btn-success">Inscription</a>
+                                @if ($course->date< now())  
+                                    <p class="text-danger">The Course has been terminated</p>
+                                @elseif (Auth::user()->isSubscribed($course)) 
+                                    <a href="{{ route('unsubscribe',["id"=>$course->id])}}" class="text-white underline mr-2">Unsubscribe</a>
                                 @else
-                                <a class="button-inscribe btn btn-danger">Course is Full</a> 
+                                    @if(($course->num_max - $course->inscritos()) > 0)
+                                        <a href="{{ route('subscribe',["id"=>$course->id])}}" class="text-white underline mr-2">Inscribe</a>
+                                    @endif
                                 @endif
                             </div>
                             

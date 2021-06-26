@@ -60,16 +60,14 @@
             
                 <div class="container-fluid d-flex flex-wrap justify-content-around">
                     @foreach ($courses as $course)
-                    @if (($course->num_max - $course->inscritos()) <= 0)
+                    @if ($course->date< now())
                     <div class=" mb-5 shadow-lg card-special-grey" style="width: 18rem;">
                             <div style="height:14rem">
                             <img src="{{asset('img/notavailable.png')}}" class="card-img-top p-3" alt="...">
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title text-white">{{ $course->course_name }}</h5>
-                                <p class="card-text"><small class="text-danger">No places available</small></p>
                                 <p class="card-text"><small class="text-white">{{ $course->date }}</small></p>
-                                <p class="card-text text-white">{{ $course->description }}</p>
                                 @auth
                                     @if (Auth::user()->is_admin)
                                         <a href="{{route('edit',  ["id"=>$course->id])}}" >
@@ -78,12 +76,39 @@
                                         <a href="{{route('delete',  ["id"=>$course->id])}}">
                                             <img src="{{asset('img/delete.png')}}" style="max-width: 25px;">
                                         </a>
-                                      
-                                                 
-                              
+                                    @else
+                                    <a  class="ropdown-menu dropdown-menu-right underline text-white mr-2"  id="doneDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Unavailable
+                                    </a>
+                                        <p class="dropdown-menu dropdown-menu-right" aria-labelledby="doneDropdown">Sorry, the course is not available.</p>
                                     @endif
-                                    
                                 @endauth
+                                
+                                <a href="{{route('show',  ["id"=>$course->id])}}" class="text-white underline">More info</a>
+
+                            </div>
+                            
+                        </div>
+                    
+                    @elseif (($course->num_max - $course->inscritos()) <= 0)
+                    <div class=" mb-5 shadow-lg card-special-grey" style="width: 18rem;">
+                            <div style="height:14rem">
+                            <img src="{{asset('img/notavailable.png')}}" class="card-img-top p-3" alt="...">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title text-white">{{ $course->course_name }}</h5>
+                                <p class="card-text"><small class="text-danger">No places available</small></p>
+                                <p class="card-text"><small class="text-white">{{ $course->date }}</small></p>
+                                @auth
+                                    @if (Auth::user()->is_admin)
+                                        <a href="{{route('edit',  ["id"=>$course->id])}}" >
+                                            <img src="{{asset('img/edit.png')}}" style="max-width: 25px;">
+                                        </a>
+                                        <a href="{{route('delete',  ["id"=>$course->id])}}">
+                                            <img src="{{asset('img/delete.png')}}" style="max-width: 25px;">
+                                        </a>
+                                    @endif
+                                @endauth
+                                
                                 @auth
                                 @if (!$course->isFull()) 
                                     @if (Auth::user()->isSubscribed($course)) 
@@ -117,7 +142,6 @@
                                 <p class="card-text"><small class="text-white">Available places: {{$course->num_max - $course->inscritos()}}</small></p>
                                 @endif
                                 <p class="card-text"><small class="text-white">{{ $course->date }}</small></p>
-                                <p class="card-text">{{ $course->description }}</p>
                                 @auth
                                     @if (Auth::user()->is_admin)
                                         <a href="{{route('edit',  ["id"=>$course->id])}}" >
@@ -133,24 +157,20 @@
                                     
                                 @endauth
                                 @auth
-                                @if (!$course->isFull()) 
+                                
                                     @if (Auth::user()->isSubscribed($course)) 
                                         <a href="{{ route('unsubscribe',["id"=>$course->id])}}" class="text-white underline">Unsubscribe</a>
                                     @else               
                                         <a href="{{ route('subscribe',["id"=>$course->id])}}" class="text-white underline">Inscribe</a>
                                     @endif
-                                @else
-                                    @if (Auth::user()->isSubscribed($course)) 
-                                        <a href="{{ route('unsubscribe',["id"=>$course->id])}}" class="text-white underline">Unsubscribe</a>
-                                    @else   
-                                        <a class="text-danger">Course is Full</a>
-                                    @endif
-                                @endif
+
+                                   
+                             
                                 @endauth
                                 @if (Auth::user()==null)  
-                                <a href="{{ route('subscribe',["id"=>$course->id])}}" class="ml-2 text-white underline">Inscription</a>
+                                <a href="{{ route('subscribe',["id"=>$course->id])}}" class="mr-2 text-white underline">Inscription</a>
                                 @endif
-                                <a href="{{route('show',  ["id"=>$course->id])}}" class="ml-2 text-white underline">More info</a>
+                                <a href="{{route('show',  ["id"=>$course->id])}}" class="mr-2 text-white underline">More info</a>
 
                             </div>
                             
