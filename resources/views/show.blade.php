@@ -33,43 +33,44 @@
 </head>
 
 <body class="antialiased">
-    
+    @section('show')
     <div
-        class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-        @if (Route::has('login'))
-            <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block float-right mr-5">
-
-                    <a href="{{ url('/home') }}" class="text-sm text-white underline">Home</a>
-            </div>
-        @endif
+        
   
-        <div class="container-md p-5">
+        <div class="container-md p-5" >
             <div class="panel panel-default">
 
                 <div class="container-fluid d-flex flex-wrap justify-content-around">
-                        <div class=" mb-5 shadow-lg card-special" style="width: 18rem; border-radius:1rem;">
-                            <img src="{{ $course->image }}" class="card-img-top p-2" style="border-radius:1rem" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $course->course_name }}</h5>
+                            <img src="{{ $course->image }}" class="card-img-top p-2" style="border-radius:1rem; max-height:600px; max-width:600px" alt="...">
+                
+                            <div class="card-body" style="max-width:30rem;">
+                                <h5 class="card-title text-white">{{ $course->course_name }}</h5>
+                                @if(($course->num_max - $course->inscritos()) <= 0)
+                                <p class="text-danger">There are no places available</p>
+                                else
                                 <p class="card-text"><small class="text-white">{{$course->inscritos()}} de {{ $course->num_max }}</small></p>
+                                @endif
                                 <p class="card-text"><small class="text-white">{{ $course->date }}</small></p>
-                                <p class="card-text">{{ $course->description }}</p>
+                                <p class="card-text text-white">{{ $course->description }}</p>
                                
-                                @if (!$course->isFull())                                   
-                                <a href="{{ route('subscribe',["id"=>$course->id])}}" class="button-inscribe btn btn-success">Inscription</a>
+                                @if ($course->date< now())  
+                                    <p class="text-danger">The Course has been terminated</p>
+                                @elseif (Auth::user()->isSubscribed($course)) 
+                                    <a href="{{ route('unsubscribe',["id"=>$course->id])}}" class="text-white underline mr-2">Unsubscribe</a>
                                 @else
-                                <a class="button-inscribe btn btn-danger">Course is Full</a> 
+                                    @if(($course->num_max - $course->inscritos()) > 0)
+                                        <a href="{{ route('subscribe',["id"=>$course->id])}}" class="text-white underline mr-2">Inscribe</a>
+                                    @endif
                                 @endif
                             </div>
                             
-                        </div>
+                        
                 </div>
             </div>
         </div>
     </div>
-    </div>
-    </div>
-    </div>
+    @endsection
+    
 
     <!--<div class="flex justify-center mt-4 sm:items-center sm:justify-between">
         <div class="text-center text-sm text-gray-500 sm:text-left">

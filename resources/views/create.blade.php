@@ -38,7 +38,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="hour" class="col-md-4 col-form-label text-md-right">Hour</label>
+                            <label for="hour" class="col-md-4 col-form-label text-md-right">Hour (HH:MM:SS)</label>
                             
                             <div class="col-md-6">
                                 <input  type="appt-time" class="form-control" name="hour" min="00:00:00" max=“23:59:59” required>
@@ -64,10 +64,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="switch" for="favorite">
+                            <label class="col-md-4 col-form-label text-md-right" for="favorite">
                                 Favorite
                             </label>
-                            <input type="checkbox"  name="favorite">
+                            <input type="checkbox" name="favorite" class="mt-3 ml-2" style="max-width: 20px;">
                         </div>
 
                         <div class="form-group row">
@@ -80,10 +80,10 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="button-info btn btn-primary">
+                                <button type="submit" class="btn btn-outline-light">
                                     Create Course
                                 </button>
-                                <button type="submit" class="button-info btn btn-danger">
+                                <button type="submit" class="btn btn-outline-danger">
                                     Cancel
                                 </button>
                             </div>
