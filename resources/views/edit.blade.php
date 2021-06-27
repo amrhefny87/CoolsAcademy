@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card-special2">
+            <div class="card-special-black">
                 <div class="card-header">Edit Course</div>
 
                 <div class="card-body">
@@ -66,13 +66,13 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="switch" for="favorite">
+                            <label class="col-md-4 col-form-label text-md-right" for="favorite">
                                 Favorite
                             </label>
                             @if ($course->favorite==true)
-                                <input type="checkbox"  name="favorite" checked>
+                                <input type="checkbox"  name="favorite" checked class="mt-3 ml-2" style="max-width: 20px;">
                             @else
-                                <input type="checkbox"  name="favorite">
+                                <input type="checkbox"  name="favorite" class="mt-3 ml-2" style="max-width: 20px;">
                             @endif
                         </div>
                         <div class="form-group row">
@@ -85,10 +85,10 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="button-info btn btn-primary">
+                                <button type="submit" class="btn btn-outline-light">
                                     Update Course
                                 </button>
-                                <button type="submit" class="button-info btn btn-danger">
+                                <button type="submit" class="btn btn-outline-danger">
                                     Cancel
                                 </button>
                             </div>
