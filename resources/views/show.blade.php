@@ -43,7 +43,7 @@
                 <div class="container-fluid d-flex flex-wrap justify-content-around">
                             <img src="{{ $course->image }}" class="card-img-top p-2" style="border-radius:1rem; max-height:600px; max-width:600px" alt="...">
                 
-                            <div class="card-body">
+                            <div class="card-body" style="max-width:30rem;">
                                 <h5 class="card-title text-white">{{ $course->course_name }}</h5>
                                 @if(($course->num_max - $course->inscritos()) <= 0)
                                 <p class="text-danger">There are no places available</p>

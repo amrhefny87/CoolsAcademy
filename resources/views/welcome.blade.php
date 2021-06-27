@@ -40,11 +40,13 @@
             <div class="swiper-container float-center">
                 <div class="swiper-wrapper">
                     @foreach ($courses as $course)
-                        @if ($course->favorite)
-                            <div class="swiper-slide">
-                                <img src="{{$course->image}}" class="card-img-top p-2" alt="...">
-                        
-                            </div>
+                        @if ($course->date> now())  
+                            @if ($course->favorite)
+                                <div class="swiper-slide">
+                                    <img src="{{$course->image}}" class="card-img-top p-2" alt="...">
+                            
+                                </div>
+                            @endif
                         @endif
                     @endforeach
 
@@ -63,7 +65,7 @@
                     @if ($course->date< now())
                     <div class=" mb-5 shadow-lg card-special-grey" style="width: 18rem;">
                             <div style="height:14rem">
-                            <img src="{{asset('img/notavailable.png')}}" class="card-img-top p-3" alt="...">
+                            <img src="{{$course->image}}" class="card-img-top p-3" style="filter: grayscale(100%);" alt="...">
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title text-white">{{ $course->course_name }}</h5>
@@ -92,7 +94,7 @@
                     @elseif (($course->num_max - $course->inscritos()) <= 0)
                     <div class=" mb-5 shadow-lg card-special-grey" style="width: 18rem;">
                             <div style="height:14rem">
-                            <img src="{{asset('img/notavailable.png')}}" class="card-img-top p-3" alt="...">
+                            <img src="{{$course->image}}" class="card-img-top p-3" style="filter: grayscale(100%);" alt="...">
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title text-white">{{ $course->course_name }}</h5>

@@ -20,7 +20,7 @@
                             @if (Auth::check())
             <!--Aquí va un if --><a href="{{ route('unsubscribe', ["id"=>$myCourse->id]) }}" class="text-white underline">Unsubscribe</a>
                                 @endif
-                            <a href="#" class="ml-2 text-white underline">More info</a>
+                            <a href="{{route('show',  ["id"=>$myCourse->id])}}" class="ml-2 text-white underline">More info</a>
                         </div>
                     </div>
                    
