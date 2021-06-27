@@ -74,11 +74,7 @@
                                         <a href="{{route('delete',  ["id"=>$course->id])}}">
                                             <img src="{{asset('img/delete.png')}}" style="max-width: 25px;">
                                         </a>
-<<<<<<< HEAD
-                                    
-=======
                                       
->>>>>>> 95b00d0bbf27445a5a3a84892770f9aafa421460
                                     @endif
                                     
                                 @endauth
