@@ -74,7 +74,11 @@
                                         <a href="{{route('delete',  ["id"=>$course->id])}}">
                                             <img src="{{asset('img/delete.png')}}" style="max-width: 25px;">
                                         </a>
+<<<<<<< HEAD
                                     
+=======
+                                      
+>>>>>>> 95b00d0bbf27445a5a3a84892770f9aafa421460
                                     @endif
                                     
                                 @endauth
@@ -93,24 +97,14 @@
 
                                         @endif
 
-                                        <a href="{{ route('unsubscribe',["id"=>$course->id])}}" class="ml-2 text-white underline">Unsubscribe</a>
-                                        @else               
-                                        <a href="{{ route('subscribe',["id"=>$course->id])}}" class="ml-2 text-white underline">Inscription</a>
-
                                     @endif
-                                @else
-                                    @if (Auth::user()->isSubscribed($course)) 
-                                        <a href="{{ route('unsubscribe',["id"=>$course->id])}}" class="ml-2 text-white underline">Unsubscribe</a>
-                                    @else   
-                                        <a class="ml-2 text-danger">Course is Full</a>
-                                    @endif
+                               
                                 @endif
                                 @endauth
                                 @if (Auth::user()==null)  
                                 <a href="{{ route('subscribe',["id"=>$course->id])}}" class="ml-2 text-white underline">Inscription</a>
                                 @endif
                                 <a href="{{route('show',  ["id"=>$course->id])}}" class="ml-2 text-white underline">More info</a>
-
                             </div>
                             
                         </div>
