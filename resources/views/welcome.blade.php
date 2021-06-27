@@ -78,10 +78,12 @@
                                         <a href="{{route('delete',  ["id"=>$course->id])}}">
                                             <img src="{{asset('img/delete.png')}}" style="max-width: 25px;">
                                         </a>
+
                                     @else
                                     <a  class="ropdown-menu dropdown-menu-right underline text-white mr-2"  id="doneDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Unavailable
                                     </a>
                                         <p class="dropdown-menu dropdown-menu-right" aria-labelledby="doneDropdown">Sorry, the course is not available.</p>
+
                                     @endif
                                 @endauth
                                 
@@ -114,6 +116,7 @@
                                 @auth
                                 @if (!$course->isFull()) 
                                     @if (Auth::user()->isSubscribed($course)) 
+
                                         <a href="{{ route('unsubscribe',["id"=>$course->id])}}" class="text-white underline">Unsubscribe</a>
                                     @else               
                                         <a href="{{ route('subscribe',["id"=>$course->id])}}" class="text-white underline">Inscribe</a>
@@ -123,7 +126,9 @@
                                         <a href="{{ route('unsubscribe',["id"=>$course->id])}}" class="text-white underline">Unsubscribe</a>
                                     @else   
                                         <a class="text-danger">Course is Full</a>
+
                                     @endif
+                               
                                 @endif
                                 @endauth
                                 <a href="{{route('show',  ["id"=>$course->id])}}" class="text-white underline">More info</a>

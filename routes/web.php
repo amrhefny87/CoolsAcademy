@@ -55,3 +55,5 @@ Route::get('/home/show/{id}', [CourseController::class, 'show'])->name('show');
 
 Route::put('/home/update/{id}',[CourseController::class,'update'])->middleware('admin')->name('update');
 
+
+
