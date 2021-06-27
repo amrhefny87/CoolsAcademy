@@ -28,7 +28,6 @@
             </div>
         @endif
     </div>
-   
     <!--<div class="slider float-center">-->
 
         <div class="container-md p-5">
