@@ -94,7 +94,7 @@
                                         @endif
 
                                         <a href="{{ route('unsubscribe',["id"=>$course->id])}}" class="ml-2 text-white underline">Unsubscribe</a>
-                                    @else               
+                                        @else               
                                         <a href="{{ route('subscribe',["id"=>$course->id])}}" class="ml-2 text-white underline">Inscription</a>
 
                                     @endif
