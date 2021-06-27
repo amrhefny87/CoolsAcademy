@@ -91,7 +91,7 @@
             @yield('show')
             
         </main>
-        <footer class="sticky-bottom bg-dark text-white" style="max-height: 22%" >
+        <footer class="footer sticky-bottom bg-dark text-white" style="max-height: 22%" >
             <div class="d-flex align-items-center flex-column">
             <h3 class="justify-content-center">Contact Us</h3>
             <div>
