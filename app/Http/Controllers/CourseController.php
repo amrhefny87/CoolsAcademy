@@ -53,8 +53,8 @@ class CourseController extends Controller
         // $courses = $user->courses;
         $course=Course::find($id);
         if (!$user->isSubscribed($course)){
-            $user->subscribeTo($course);
             $this->sendEmail();
+            $user->subscribeTo($course);
         }
 
         return redirect()->route('myCourses');
@@ -79,11 +79,11 @@ class CourseController extends Controller
 
     public function sendEmail()
     {
-        $correo = new WelcomeToCourseMailable ();
+        $correo = new WelcomeToCourseMailable();
         $user = Auth::user();
 
         //Mail::to("cooldersversion2@gmail.com")->send($correo);
-        Mail::to($user->email)->send($correo);
+        Mail::to('asuareztamayo@hotmail.com')->send($correo);
         
         return redirect()->route('myCourses');
         
