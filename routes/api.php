@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\CourseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\ApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/courses', [ApiController::class, 'index' ] );
+
+Route::get('/courses/{id}/subscribers', [ApiController::class, 'subscribers'] );
