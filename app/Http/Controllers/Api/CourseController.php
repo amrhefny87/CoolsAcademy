@@ -19,12 +19,20 @@ class CourseController extends Controller
     public function index()
     {
         //return 'test';
-        $courses = Course::paginate(1);
-        return(CourseResources::collection($courses));
+        $courses = Course::all();
+        return ($courses);
+        //return(CourseResources::collection($courses));
         //$sliderCourses = Course::where('favorite', true)->orderByDesc('created_at')->take(6)->get();
         //$courses =Course::all()->sortByDesc('date');
 
         //return view('welcome', ['sliderCourses'=>$sliderCourses, 'courses'=>$courses]);
+    }
+
+    public function subscribers($id)
+    {
+        $course = Course::find($id);
+        $subscribers = $course->users;
+        return response()->json($subscribers, 200);
 
     }
 

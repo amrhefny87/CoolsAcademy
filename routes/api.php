@@ -21,3 +21,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/courses', [CourseController::class, 'index']);
+Route::get('/courses/{id}/subscribers', [CourseController::class, 'subscribers']);
